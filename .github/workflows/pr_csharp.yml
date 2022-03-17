@@ -22,11 +22,15 @@ jobs:
           dotnet-version: 6.0.x
       - name: Restore dependencies
         run: dotnet restore
+        working-directory: ${{ env.working-directory }}
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --no-restore --configuration Release
+        working-directory: ${{ env.working-directory }}
       - name: Test
-        run: dotnet test --no-build --verbosity normal --collect="XPlat Code Coverage"
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect="XPlat Code Coverage"
+        working-directory: ${{ env.working-directory }}
       - name: Report coverage
         uses: codecov/codecov-action@v2
         with:
           flags: csharp
+          working-directory: ${{ env.working-directory }}
