@@ -21,11 +21,11 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Pehape.sln
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --no-restore --configuration Release Pehape.sln
       - name: Test
-        run: dotnet test --no-build --verbosity normal --collect="XPlat Code Coverage"
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect="XPlat Code Coverage" Pehape.sln
       - name: Report coverage
         uses: codecov/codecov-action@v2
         with:
