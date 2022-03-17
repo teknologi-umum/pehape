@@ -1,0 +1,6 @@
+bin
+obj
+.vs
+coverage*.json
+coverage*.xml
+coverage*.info

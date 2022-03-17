@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pehape", "Pehape\Pehape.csproj", "{4C3CFF94-2E94-4F7F-B711-936BA8C379D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pehape", "Pehape\Pehape.csproj", "{4C3CFF94-2E94-4F7F-B711-936BA8C379D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3523017-0B8A-41BC-8E72-9E1B7B5A71FC}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,7 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{41166AAD-CCA7-4D9F-954E-687E4E1B66F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{41166AAD-CCA7-4D9F-954E-687E4E1B66F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github Workflows", "Github Workflows", "{794E3517-0CCA-4378-97EF-F52C833CCA8C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\pr_csharp.yml = ..\.github\workflows\pr_csharp.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
