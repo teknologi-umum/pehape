@@ -21,12 +21,16 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Restore dependencies
-        run: dotnet restore Pehape.sln
+        working-directory: ${{ env.working-directory }}
+        run: dotnet restore
       - name: Build
-        run: dotnet build --no-restore --configuration Release Pehape.sln
+        working-directory: ${{ env.working-directory }}
+        run: dotnet build --no-restore --configuration Release
       - name: Test
-        run: dotnet test --no-build --configuration Release --verbosity normal --collect="XPlat Code Coverage" Pehape.sln
+        working-directory: ${{ env.working-directory }}
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect="XPlat Code Coverage"
       - name: Report coverage
+        working-directory: ${{ env.working-directory }}
         uses: codecov/codecov-action@v2
         with:
           flags: csharp
