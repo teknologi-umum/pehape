@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Backend
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       working-directory: ./csharp
     timeout-minutes: 5
