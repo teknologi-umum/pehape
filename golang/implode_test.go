@@ -17,6 +17,7 @@ func TestImplode(t *testing.T) {
 	a2 := Implode(",", join2)
 	a3 := Implode(",", join3)
 	arr := Implode(" ", array)
+	arrDoubleSpace := Implode("  ", array)
 	arrWithNoSpace := Implode("", array)
 	wkwk := Implode(" wkwkwk ", array)
 	enter := Implode("\n", array)
@@ -37,7 +38,11 @@ func TestImplode(t *testing.T) {
 		t.Errorf("arr is : %s\n", arr)
 	}
 
-	if arrWithNoSpace != "Helloworld" && strings.Compare(arrWithNoSpace, "Hello world") == 1 {
+	if arrDoubleSpace != "Hello  world" && strings.Compare(arr, "Hello  world") == 1 {
+		t.Errorf("arr is : %s\n", arr)
+	}
+
+	if arrWithNoSpace != "Helloworld" && strings.Compare(arrWithNoSpace, "Helloworld") == 1 {
 		t.Errorf("arrWithNoSpace is : %s\n", arrWithNoSpace)
 	}
 
