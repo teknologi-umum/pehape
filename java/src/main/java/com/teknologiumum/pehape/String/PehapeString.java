@@ -2,16 +2,18 @@ package com.teknologiumum.pehape.String;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class PehapeString {
 
     public static String[] explode(String separator, String content) {
 
-        if (separator.length() == 0 || separator == null) {
-            throw new IllegalArgumentException("separator can't be empty");
+        if (StringUtils.isEmpty(separator)) {
+            throw new IllegalArgumentException("Separator can't be empty.");
         }
 
-        if (content.length() == 0 || content == null) {
-            throw new IllegalArgumentException("content can't be empty");
+        if (StringUtils.isEmpty(content)) {
+            throw new IllegalArgumentException("Content can't be empty.");
         }
 
         return content.split(separator);
@@ -23,20 +25,20 @@ public class PehapeString {
             return explode(content, separator);
         }
 
-        if (separator.length() == 0 || separator == null) {
-            throw new IllegalArgumentException("separator can't be empty");
+        if (StringUtils.isEmpty(separator)) {
+            throw new IllegalArgumentException("Separator can't be empty.");
         }
 
-        if (content.length() == 0 || content == null) {
-            throw new IllegalArgumentException("content can't be empty");
+        if (StringUtils.isEmpty(content)) {
+            throw new IllegalArgumentException("Content can't be empty.");
         }
 
         if (limit > 0) {
             return content.split(separator, limit);
         } else if (limit < 0) {
             String[] array = content.split(separator, limit);
-            if (Math.abs(limit) > array.length) {
-                return Arrays.copyOfRange(array, 0, 0);
+            if (Math.abs(limit) >= array.length) {
+                return new String[0];
             } else {
                 return Arrays.copyOfRange(array, 0, array.length + limit);
             }
