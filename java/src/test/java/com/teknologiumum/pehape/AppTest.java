@@ -1,10 +1,10 @@
-package org.teknologiumum.pehape;
+package com.teknologiumum.pehape;
 
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.teknologiumum.pehape.String.PehapeString;
+import com.teknologiumum.pehape.String.PehapeString;
 
 /**
  * Unit test for simple App.

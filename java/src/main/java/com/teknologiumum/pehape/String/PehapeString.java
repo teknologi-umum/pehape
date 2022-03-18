@@ -1,4 +1,4 @@
-package org.teknologiumum.pehape.String;
+package com.teknologiumum.pehape.String;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ public class PehapeString {
         }
 
         if (content.length() == 0 || content == null) {
-            throw new IllegalArgumentException("separator can't be empty");
+            throw new IllegalArgumentException("content can't be empty");
         }
 
         return content.split(separator);
@@ -28,7 +28,7 @@ public class PehapeString {
         }
 
         if (content.length() == 0 || content == null) {
-            throw new IllegalArgumentException("separator can't be empty");
+            throw new IllegalArgumentException("content can't be empty");
         }
 
         if (limit > 0) {
