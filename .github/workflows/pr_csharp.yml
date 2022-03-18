@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Backend
+    name: Build and Test
     runs-on: windows-latest
     env:
       working-directory: ./csharp
