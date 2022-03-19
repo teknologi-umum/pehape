@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    php-func-ruby (0.1.0)
+    pehape (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -51,7 +51,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  php-func-ruby!
+  pehape!
   pry
   rake (~> 13.0)
   rspec (~> 3.0)

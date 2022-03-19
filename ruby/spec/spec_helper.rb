@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "php/func/ruby"
+require_relative "../lib/pehape/pehape"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
