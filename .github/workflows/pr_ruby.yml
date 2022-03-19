@@ -27,6 +27,8 @@ jobs:
         working-directory: ${{ env.working-directory }}
       - name: Test
         run: bundle exec rake
+        env:
+          CI: true
         working-directory: ${{ env.working-directory }}
       - name: Report coverage
         uses: codecov/codecov-action@v2
