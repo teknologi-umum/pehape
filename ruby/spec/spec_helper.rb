@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "simplecov"
-SimpleCov.start
 require_relative "../lib/pehape"
+SimpleCov.start
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
