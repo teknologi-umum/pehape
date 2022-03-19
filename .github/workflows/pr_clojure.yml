@@ -22,7 +22,7 @@ jobs:
         run: lein deps
         working-directory: ${{ env.working-directory }}
       - name: Run tests
-        run: lein cloverage --codecov
+        run: lein coverage
         working-directory: ${{ env.working-directory }}
       - name: Report coverage
         uses: codecov/codecov-action@v2
