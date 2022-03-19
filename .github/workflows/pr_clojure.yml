@@ -14,14 +14,16 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      working-directory: ./csharp
+      working-directory: ./clojure
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: lein deps
+        working-directory: ${{ env.working-directory }}
       - name: Run tests
         run: lein cloverage --codecov
+        working-directory: ${{ env.working-directory }}
       - name: Report coverage
         uses: codecov/codecov-action@v2
         with:
