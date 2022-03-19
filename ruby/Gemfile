@@ -14,3 +14,5 @@ gem "rubocop", "~> 1.21"
 gem "pry"
 
 gem "simplecov", require: false, group: :test
+
+gem "codecov", require: false, group: "test"
