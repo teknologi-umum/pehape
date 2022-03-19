@@ -1,0 +1,35 @@
+name: Ruby PR Check
+
+on:
+  push:
+    branches: [ master ]
+    paths: ["ruby/**"]
+  pull_request:
+    branches: [ master ]
+    paths: ["ruby/**"]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./ruby
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '3.1'
+      - name: Install dependencies
+        run: bundle install
+        working-directory: ${{ env.working-directory }}
+      - name: Test
+        run: bundle exec rake
+        working-directory: ${{ env.working-directory }}
+      - name: Report coverage
+        uses: codecov/codecov-action@v2
+        with:
+          flags: ruby
+          working-directory: ${{ env.working-directory }}

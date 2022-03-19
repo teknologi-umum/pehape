@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "pehape/version"
 require_relative "pehape/string/index"
 
 begin
