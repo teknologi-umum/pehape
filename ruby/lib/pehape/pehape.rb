@@ -10,8 +10,4 @@ end
 
 module Pehape
   class Error < StandardError; end
-
-  def self.aksi
-    "Aksi"
-  end
 end
