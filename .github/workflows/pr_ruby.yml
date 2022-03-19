@@ -25,13 +25,8 @@ jobs:
       - name: Install dependencies
         run: bundle install
         working-directory: ${{ env.working-directory }}
-      - name: Test
+      - name: Test and report coverage
         run: bundle exec rake
         env:
           CI: true
         working-directory: ${{ env.working-directory }}
-      - name: Report coverage
-        uses: codecov/codecov-action@v2
-        with:
-          flags: ruby
-          working-directory: ${{ env.working-directory }}
