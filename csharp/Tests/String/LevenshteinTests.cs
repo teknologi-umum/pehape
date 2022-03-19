@@ -42,6 +42,7 @@ namespace Tests.String {
 		// very expensive replacement
 		[InlineData(4, "111", "121", 2, 9, 2)]
 
+		// test cases from https://github.com/php/php-src/blob/master/ext/standard/tests/strings/levenshtein_error_conditions.phpt
 		// levenshtein no longer has a maximum string length limit
 		[InlineData(254, "AbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsu", "A")]
 		[InlineData(255, "AbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrstuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuvwxyzAbcdefghijklmnopqrtsuv", "A")]
@@ -53,6 +54,16 @@ namespace Tests.String {
 		[InlineData(2, "xa", "xbc")]
 		[InlineData(2, "xax", "xbcx")]
 		[InlineData(2, "ax", "bcx")]
+
+		// test cases from https://github.com/php/php-src/blob/master/ext/standard/tests/strings/levenshtein_bug_6562.phpt
+		[InlineData(1, "debug", "debugg")]
+		[InlineData(1, "ddebug", "debug")]
+		[InlineData(2, "debbbug", "debug")]
+		[InlineData(1, "debugging", "debuging")]
+
+		// test cases from https://github.com/php/php-src/blob/master/ext/standard/tests/strings/levenshtein_bug_7368.phpt
+		[InlineData(2, "13458", "12345")]
+		[InlineData(2, "1345", "1234")]
 
 		// theory
 		[Theory]
