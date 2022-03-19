@@ -24,7 +24,7 @@
   (testing "Explode Space Separated String By Empty String Throws Exception"
     #_{:clj-kondo/ignore [:inline-def]}
     (def content "Hello pehape world")
-    (is (thrown-with-msg? IllegalArgumentException #"separator cannot be empty" (explode "" content)))))
+    (is (thrown-with-msg? IllegalArgumentException #"separator cannot be nil or empty" (explode "" content)))))
 
 
 (deftest implode-test
