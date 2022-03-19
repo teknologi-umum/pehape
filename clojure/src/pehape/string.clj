@@ -4,7 +4,7 @@
 
 (defn explode
   "The Explode function breaks a string into an array.
-   
+
    Arguments:
    - `separator` Specifies where to break the string.
    - `content` The string to split.
@@ -19,14 +19,14 @@
   ([separator content]
    (cond
      (or (nil? separator)
-         (= separator "")) (throw (IllegalArgumentException. "separator cannot be empty"))
-     (nil? content) (throw (IllegalArgumentException. "content cannot be empty"))
+         (= separator "")) (throw (IllegalArgumentException. "separator cannot be nil or empty"))
+     (nil? content) (throw (IllegalArgumentException. "content cannot be nil"))
      :else (str/split content (re-pattern separator))))
   ([separator content limit]
    (cond
      (or (nil? separator)
-         (= separator "")) (throw (IllegalArgumentException. "separator cannot be empty"))
-     (nil? content) (throw (IllegalArgumentException. "content cannot be empty"))
+         (= separator "")) (throw (IllegalArgumentException. "separator cannot be nil or empty"))
+     (nil? content) (throw (IllegalArgumentException. "content cannot be nil"))
      (> limit 0) (take limit (str/split content (re-pattern separator)))
      (< limit 0) (drop-last (- limit) (str/split content (re-pattern separator)))
      :else (take 1 (str/split content (re-pattern separator))))))
@@ -34,7 +34,7 @@
 
 (defn implode
   "The Implode function joins array elements with a string.
-   
+
    Arguments:
    - `separator` Specifies what to put between the array elements.
    - `array` The array to join to a string.
