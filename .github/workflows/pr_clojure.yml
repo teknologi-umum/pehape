@@ -1,0 +1,29 @@
+name: Clojure PR Check
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["clojure/**"]
+  pull_request:
+    branches: ["master"]
+    paths: ["clojure/**"]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./csharp
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: lein deps
+      - name: Run tests
+        run: lein cloverage --codecov
+      - name: Report coverage
+        uses: codecov/codecov-action@v2
+        with:
+          flags: clojure
+          working-directory: ${{ env.working-directory }}
