@@ -2,16 +2,9 @@ AllCops:
   TargetRubyVersion: 2.6
   NewCops: enable
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
-
-Layout/LineLength:
-  Max: 120
 
 Layout/IndentationWidth:
   Width: 2
@@ -19,6 +12,9 @@ Layout/IndentationWidth:
 # Commonly used screens these days easily fit more than 80 characters.
 Layout/LineLength:
   Max: 120
+
+Layout/EndOfLine:
+  Enabled: false
 
 Metrics/MethodLength:
   Max: 120
@@ -32,6 +28,7 @@ Layout/SpaceAroundEqualsInParameterDefault:
 # when introducing an interpolation. Use single quotes only if their semantics
 # are needed.
 Style/StringLiterals:
+  Enabled: true
   EnforcedStyle: double_quotes
 
 # We do not need to support Ruby 1.9, so this is good to use.

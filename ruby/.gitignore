@@ -64,3 +64,6 @@ build-iPhoneSimulator/
 
 # rspec failure tracking
 .rspec_status
+
+# RubyMine
+.idea
