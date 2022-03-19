@@ -4,7 +4,7 @@ require "simplecov"
 require_relative "../lib/pehape"
 SimpleCov.start
 
-if ENV["CI"] == true
+if ENV["CI"] == "true"
   require "codecov"
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
