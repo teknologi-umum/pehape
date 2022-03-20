@@ -64,8 +64,8 @@
    (cond
      (nil? str1) (throw (IllegalArgumentException. "str1 cannot be nil"))
      (nil? str2) (throw (IllegalArgumentException. "str2 cannot be nil"))
-     (= (count str1) 0) (count str2)
-     (= (count str2) 0) (count str1)
+     (zero? (count str1)) (count str2)
+     (zero? (count str2)) (count str1)
      :else
      (let [p1 (atom (into [] (range (+ 1 (count str2)))))
            p2 (atom [])
@@ -99,11 +99,11 @@
    (cond
      (nil? str1) (throw (IllegalArgumentException. "str1 cannot be nil"))
      (nil? str2) (throw (IllegalArgumentException. "str2 cannot be nil"))
-     (< insert-cost 0) (throw (IllegalArgumentException. "insert-cost cannot be a negative value"))
-     (< replace-cost 0) (throw (IllegalArgumentException. "replace-cost cannot be a negative value"))
-     (< delete-cost 0) (throw (IllegalArgumentException. "delete-cost cannot be a negative value"))
-     (= (count str1) 0) (* insert-cost (count str2))
-     (= (count str2) 0) (* delete-cost (count str1))
+     (neg? insert-cost) (throw (IllegalArgumentException. "insert-cost cannot be a negative value"))
+     (neg? replace-cost) (throw (IllegalArgumentException. "replace-cost cannot be a negative value"))
+     (neg? delete-cost) (throw (IllegalArgumentException. "delete-cost cannot be a negative value"))
+     (zero? (count str1)) (* insert-cost (count str2))
+     (zero? (count str2)) (* delete-cost (count str1))
      :else
      (let [p1 (atom (into [] (map #(* insert-cost %)
                                   (range (+ 1 (count str2))))))
