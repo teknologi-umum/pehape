@@ -7,7 +7,7 @@ RSpec.describe Pehape do
     expect(Pehape.echo(true)).to equal(nil)
     expect(Pehape.echo(1)).to equal(nil)
     expect(Pehape.echo(-3)).to equal(nil)
-    expect(Pehape.echo(["Pe","Ha"])).to equal(nil)
-    expect(Pehape.echo({ :Pe => "Ha"})).to equal(nil)
+    expect(Pehape.echo(["Pe", "Ha"])).to equal(nil)
+    expect(Pehape.echo({:Pe =>"Ha"})).to equal(nil)
   end
 end

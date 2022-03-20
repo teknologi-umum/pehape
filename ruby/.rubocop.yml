@@ -138,3 +138,9 @@ Lint/Debugger:
 # Style preference
 Style/MethodDefParentheses:
   Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
