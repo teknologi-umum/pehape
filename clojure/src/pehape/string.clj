@@ -61,40 +61,7 @@
    - IllegalArgumentException when `insert-cost`, `replace-cost`, or `delete-cost` is negative"
   {:added "0.0.1"}
   ([str1 str2]
-   (cond
-     (nil? str1) (throw (IllegalArgumentException. "str1 cannot be nil"))
-     (nil? str2) (throw (IllegalArgumentException. "str2 cannot be nil"))
-     (zero? (count str1)) (count str2)
-     (zero? (count str2)) (count str1)
-     :else
-     (let [p1 (atom (into [] (range (+ 1 (count str2)))))
-           p2 (atom [])
-           swapped (atom false)]
-       (doseq [i1 (range (count str1))]
-         (if @swapped
-           (swap! p1 #(assoc % 0 (+ 1 (first @p2))))
-           (swap! p2 #(assoc % 0 (+ 1 (first @p1)))))
-         (doseq [i2 (range (count str2))]
-           (let [c0 (atom (+ (if @swapped
-                               (nth @p2 i2)
-                               (nth @p1 i2))
-                             (if (= (nth str1 i1)
-                                    (nth str2 i2)) 0 1)))
-                 c1 (atom (+ 1 (if @swapped
-                                 (nth @p2 (+ 1 i2))
-                                 (nth @p1 (+ 1 i2)))))
-                 c2 (atom (+ 1 (if @swapped
-                                 (nth @p1 i2)
-                                 (nth @p2 i2))))]
-             (when (< @c1 @c0) (swap! c0 (fn [_] @c1)))
-             (when (< @c2 @c0) (swap! c0 (fn [_] @c2)))
-             (if @swapped
-               (swap! p1 (fn [n] (assoc n (+ 1 i2) @c0)))
-               (swap! p2 (fn [n] (assoc n (+ 1 i2) @c0))))))
-         (swap! swapped (fn [n] (not n))))
-       (if @swapped
-         (nth @p2 (count str2))
-         (nth @p1 (count str2))))))
+   (levenshtein str1 str2 1 1 1))
   ([str1 str2 insert-cost replace-cost delete-cost]
    (cond
      (nil? str1) (throw (IllegalArgumentException. "str1 cannot be nil"))
