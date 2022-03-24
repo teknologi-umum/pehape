@@ -24,4 +24,12 @@ func main() {
 	fmt.Println(a[0:3])
 	// fmt.Println(len(ex))
 
+	var str string = ""
+
+	fmt.Println(len(str))
+
+	if len(str) == 0 {
+		fmt.Println("ok")
+	}
+
 }

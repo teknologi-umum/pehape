@@ -5,6 +5,15 @@ import (
 	"testing"
 )
 
+func exp(s string, opts ...string) string {
+	var option string
+	if len(opts) > 0 {
+		option = opts[0]
+	}
+
+	return s + option
+}
+
 //function to test implode function
 func TestImplode(t *testing.T) {
 	var join = []string{"1", "2", "3"}
@@ -22,7 +31,18 @@ func TestImplode(t *testing.T) {
 	wkwk := Implode(" wkwkwk ", array)
 	enter := Implode("\n", array)
 
-	//check expected result and compare with actual result
+	checkNull := func(s string, opts ...string) string {
+		var option string
+		if len(opts) > 0 {
+			option = opts[0]
+		}
+		return s + option
+	}
+
+	null := Implode(checkNull("", ""), array)
+
+	
+	//check expected result and compare with actual result	
 	if a1 != "1,2,3" && strings.Compare(a1, "1,2,3") == 1 {
 		t.Errorf("a1 is : %s\n", a1)
 	}
@@ -46,10 +66,14 @@ func TestImplode(t *testing.T) {
 		t.Errorf("arrWithNoSpace is : %s\n", arrWithNoSpace)
 	}
 
+	if null != "Helloworld" && strings.Compare(null, "Helloworld") == 1 {
+		t.Errorf("a1 is : %s\n", null)
+	}
+
 	if wkwk != "Hello wkwkwk world" && strings.Compare(wkwk, "Hello wkwkwk world") == 1 {
 		t.Errorf("wkwk is : %s\n", wkwk)
 	}
-	
+
 	if enter != "Hello\nworld" && strings.Compare(enter, "Hello\nworld") == 1 {
 		t.Errorf("enter is : %s\n", enter)
 	}
