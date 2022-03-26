@@ -1,5 +1,4 @@
-import exp from "constants";
-import explode from "./explode";
+import { explode } from "./explode";
 
 const text = "Lazy brown fox jumps";
 
@@ -46,6 +45,8 @@ describe("whitespaces", () => {
 describe("invalid parameters", () => {
   it("should throw error if separator is empty string", () => {
     expect(() => explode("", "any string")).toThrow(Error);
-    expect(() => explode("", "any string")).toThrow("Argument limit must not be empty string");
+    expect(() => explode("", "any string")).toThrow(
+      "Argument limit must not be empty string"
+    );
   });
 });

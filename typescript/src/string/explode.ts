@@ -1,4 +1,4 @@
-const explode = (
+export const explode = (
   separator: string,
   text: string,
   limit = Number.MAX_SAFE_INTEGER
@@ -7,5 +7,3 @@ const explode = (
   if (limit === 0) limit = 1
   return text.split(separator).slice(0, limit)
 };
-
-export default explode;

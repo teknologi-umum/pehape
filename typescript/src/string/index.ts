@@ -1,1 +1,1 @@
-export { default as explode } from "./explode";
+export *  from "./explode";
