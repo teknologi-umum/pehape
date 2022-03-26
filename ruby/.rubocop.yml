@@ -41,8 +41,8 @@ Layout/HashAlignment:
   EnforcedColonStyle: table
 
 # Mixing the styles looks just silly.
-Style/HashSyntax:
-  EnforcedStyle: ruby19_no_mixed_keys
+# Style/HashSyntax:
+#   EnforcedStyle: ruby19_no_mixed_keys
 
 # has_key? and has_value? are far more readable than key? and value?
 Style/PreferredHashMethods:
@@ -138,3 +138,9 @@ Lint/Debugger:
 # Style preference
 Style/MethodDefParentheses:
   Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
