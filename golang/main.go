@@ -46,8 +46,18 @@ func main() {
 	// }
 	var str string = "Hello pehape world"
 	var res []string
-	res = Exp(" ", str, 1)
+	res = Explode(" ", str, 3)
+	if res[:1][0] != "Hello" {
+		fmt.Println("Expected Hello, got ", res[:1][0])
+	}
 	fmt.Println(res)
+
+	// cek := strings.Split(str, " ")
+	// if cek[:1][0] != "Hello" {
+	// 	fmt.Println("Expected Hello, got ", cek[:1][0])
+	// }
+	// fmt.Println(len(cek))
+	// fmt.Println(cek)
 }
 
 // func explode(s string, n int) []string {
