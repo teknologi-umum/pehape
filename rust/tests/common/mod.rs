@@ -7,16 +7,14 @@ pub fn assert_result<T, E>(actual: Result<T, E>, expected: T)
 where
     T: PartialEq + std::fmt::Debug,
 {
-    if let Ok(actual) = actual {
-        assert_eq!(actual, expected);
-    }
+    assert!(actual.is_ok());
+    assert_eq!(actual.ok(), Some(expected));
 }
 
 pub fn assert_error<T, E>(actual: Result<T, E>, expected: E)
 where
     E: PartialEq + std::fmt::Debug,
 {
-    if let Err(actual) = actual {
-        assert_eq!(actual, expected);
-    }
+    assert!(actual.is_err());
+    assert_eq!(actual.err(), Some(expected));
 }
