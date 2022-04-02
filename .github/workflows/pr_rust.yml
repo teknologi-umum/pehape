@@ -26,8 +26,8 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-      - name: Install Clippy
-        run: rustup component add clippy
+          override: true
+          components: clippy
       - name: Check using Clippy
         run: cargo clippy -- -D warnings
         working-directory: ${{ env.working-directory }}
