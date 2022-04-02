@@ -1,0 +1,40 @@
+name: Rust PR Check
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["rust/**"]
+  pull_request:
+    branches: ["master"]
+    paths: ["rust/**"]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./rust
+      CARGO_TERM_COLOR: always
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Install Clippy
+        run: rustup component add clippy
+      - name: Check using Clippy
+        run: cargo clippy -- -D warnings
+        working-directory: ${{ env.working-directory }}
+      - name: Build
+        run: cargo build --verbose
+        working-directory: ${{ env.working-directory }}
+      - name: Run tests
+        run: cargo test --verbose
+        working-directory: ${{ env.working-directory }}
+      - name: Report coverage
+        uses: codecov/codecov-action@v2
+        with:
+          flags: rust
+          working-directory: ${{ env.working-directory }}
