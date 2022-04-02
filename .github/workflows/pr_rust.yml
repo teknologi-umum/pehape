@@ -16,10 +16,6 @@ jobs:
     env:
       working-directory: ./rust
       CARGO_TERM_COLOR: always
-      PROJECT_NAME_UNDERSCORE: pehape_rs
-      CARGO_INCREMENTAL: 0
-      RUSTFLAGS: -Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort
-      RUSTDOCFLAGS: -Cpanic=abort
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
@@ -27,20 +23,31 @@ jobs:
         with:
           toolchain: nightly
           override: true
-          components: clippy
+          components: clippy, llvm-tools-preview
       - name: Check using Clippy
         run: cargo clippy -- -D warnings
         working-directory: ${{ env.working-directory }}
       - name: Build
         run: cargo build --verbose
         working-directory: ${{ env.working-directory }}
-      - name: Generate test result and coverage report
+      - name: Test
+        env:
+          LLVM_PROFILE_FILE: grcov-%p-%m.profraw
+          RUSTFLAGS: -C instrument-coverage
+        run: cargo test
+        working-directory: ${{ env.working-directory }}
+      - name: Install grcov
+        run: cargo install grcov
+      - name: Generate coverage
         run: |
-            cargo install cargo2junit grcov rust-covfix;
-            cargo test --features coverage $CARGO_OPTIONS -- -Z unstable-options --format json | cargo2junit > results.xml;
-            zip -0 ccov.zip `find . \( -name "$PROJECT_NAME_UNDERSCORE*.gc*" \) -print`;
-            grcov ccov.zip -s . -t lcov --llvm --branch --ignore-not-existing --ignore "/*" --ignore "tests/*" -o lcov.info;
-            rust-covfix -o lcov_correct.info lcov.info;
+          grcov $(find . -name "grcov-*.profraw" -print) \
+            --branch \
+            --ignore-not-existing \
+            --binary-path ./target/debug/ \
+            -s . \
+            -t lcov \
+            --ignore "/*" \
+            -o lcov.info
         working-directory: ${{ env.working-directory }}
       - name: Report coverage
         uses: codecov/codecov-action@v2

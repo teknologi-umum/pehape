@@ -1,4 +1,4 @@
-use std::{cmp::Ordering, fmt::Display};
+use std::cmp::Ordering;
 
 /// The Explode function breaks a string into an array.
 ///
@@ -52,9 +52,4 @@ where
 #[derive(Debug, Clone, PartialEq)]
 pub enum ExplodeError {
     EmptySeparator,
-}
-impl Display for ExplodeError {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "Separator cannot be empty.")
-    }
 }
