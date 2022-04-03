@@ -2,7 +2,7 @@ use crate::common::{assert_error, assert_result, vec_of_strings};
 use pehape_rs::{explode, ExplodeError};
 
 #[test]
-pub fn can_explode_separated_string_by_space() {
+pub fn can_explode_space_separated_string_by_space() {
     let str = String::from("Hello pehape world");
 
     assert_result(
