@@ -15,3 +15,6 @@ go test
 
 * The third one
 `Arigatou`
+
+# Explode
+see `explode_test.go` for sample. Thanks!
