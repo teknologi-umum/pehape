@@ -1,7 +1,8 @@
 package main
 
-//make implode like php implode
-func Implode(separator string, array []string) string {
+import "fmt"
+
+func Imp(separator string, array []string) string {
 	var result string
 
 	for i := 0; i < len(array); i++ {
@@ -14,26 +15,34 @@ func Implode(separator string, array []string) string {
 	return result
 }
 
-//make implode like php with 2 params, the first param should be string or null, and the second param should be array
-func Implode2(separator string, array []string) string {
+func Implode(array []string, separator ...string) string {
 	var result string
 
-	if separator == "" {
-		for i := 0; i < len(array); i++ {
+	for i := 0; i < len(array); i++ {
+		if separator == nil {
+			result = result + array[i]
+		} else {
 			if i == 0 {
 				result = array[i]
+				fmt.Println("0 : ", result)
 			} else {
-				result = result + array[i]
-			}
-		}
-	} else {
-		for i := 0; i < len(array); i++ {
-			if i == 0 {
-				result = array[i]
-			} else {
-				result = result + separator + array[i]
+				result = result + separator[0] + array[i]
+				fmt.Println("else :", result)
 			}
 		}
 	}
 	return result
+}
+
+func splitAnySlice[T any](s []T) ([]T, []T) {
+	mid := len(s) / 2
+	return s[:mid], s[mid:]
+}
+
+func ImpGen[T any](array []T, separator string) string {
+	// var result string
+
+	return fmt.Sprintf("%T", array)
+
+	// fmt.Println("array : ", array)
 }

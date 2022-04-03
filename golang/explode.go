@@ -1,12 +1,17 @@
 package main
 
 import (
+	"errors"
 	"strings"
 )
 
-func Explode(delimiter string, str string, limit ...int) []string {
+func Explode(separator string, str string, limit ...int) []string {
+	if separator == "" {
+		return []string{errors.New("Separator cannot be empty").Error()}
+	}
+
 	var result []string
-	result = strings.Split(str, delimiter)
+	result = strings.Split(str, separator)
 
 	if limit == nil || limit[0] > len(result) || limit[0] < -len(result) {
 		return result

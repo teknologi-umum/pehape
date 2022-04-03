@@ -1,4 +1,5 @@
 # Implode
+see `implode_test.go` for sample. Thanks!
 
 * The first one
 you can run the php file with this command
