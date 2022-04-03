@@ -18,5 +18,10 @@ RSpec.describe Pehape do
   it "another character except abjad and get first character uppercase" do
     expect(Pehape.ucfirst("_PeHaPe Hello")).to eq("_PeHaPe Hello")
     expect(Pehape.ucfirst("1PeHaPe  HE")).to eq("1PeHaPe  HE")
+    expect(Pehape.ucfirst("àPeHaPe  HE")).to eq("ÀPeHaPe  HE")
+    expect(Pehape.ucfirst("ãPeHaPe  HE")).to eq("ÃPeHaPe  HE")
+    expect(Pehape.ucfirst("ÀPeHaPe  HE")).to eq("ÀPeHaPe  HE")
+    expect(Pehape.ucfirst("đPeHaPe  HE")).to eq("ĐPeHaPe  HE")
+    expect(Pehape.ucfirst("×PeHaPe  HE")).to eq("×PeHaPe  HE")
   end
 end
