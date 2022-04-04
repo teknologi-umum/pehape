@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -38,15 +37,20 @@ func TestImplode(t *testing.T) {
 			t.Errorf("Expected Hello world, got %s", res)
 		}
 	})
-	firstInts, secondInts := splitAnySlice([]int{0, 1, 2, 3})
-	fmt.Println(firstInts, secondInts)
-	// prints [0 1] [2 3]
+	t.Run("CanImplodeArrayOfInt", func(t *testing.T) {
+		var array = []int{1, 2, 3, 4, 5}
+		if res := Implode(array, " "); res != "1 2 3 4 5" {
+			t.Errorf("Expected 1 2 3 4 5, got %s", res)
+		}
+		if res := Implode(array, ":. "); res != "1:. 2:. 3:. 4:. 5" {
+			t.Errorf("Expected 1:. 2:. 3:. 4:. 5, got %s", res)
+		}
+	})
+	t.Run("CanImplodeEMptyArray", func(t *testing.T) {
+		var arr = []string{}
+		if res := Implode(arr, " "); res != "" {
+			t.Errorf("Expected empty string, got %s", res)
+		}
+	})
 
-	firstStrings, secondStrings := splitAnySlice([]string{"zero", "one", "two", "three"})
-	fmt.Println(firstStrings, secondStrings)
-
-	var arr []string = []string{"Hello", "world"}
-	fmt.Println(ImpGen(arr, " "))
-	var arr2 []int = []int{0, 1, 2, 3}
-	fmt.Println(ImpGen(arr2, " "))
 }

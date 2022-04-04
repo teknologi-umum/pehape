@@ -87,6 +87,7 @@ func TestExplode(t *testing.T) {
 			t.Errorf("Expected Hello, got %s", res[0])
 		}
 	})
+
 	t.Run("ExplodeSpaceSeparatedStringByEmptyStringThrowsException", func(t *testing.T) {
 		var str string = "Hello pehape world"
 		if res := Explode("", str); res[0] != "Separator cannot be empty" {
