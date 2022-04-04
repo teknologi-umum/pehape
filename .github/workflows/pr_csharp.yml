@@ -3,12 +3,14 @@ name: C# PR Check
 on:
   push:
     branches: [ master ]
+    paths: ["csharp/**"]
   pull_request:
     branches: [ master ]
+    paths: ["csharp/**"]
 
 jobs:
   build:
-    name: Backend
+    name: Build and Test
     runs-on: windows-latest
     env:
       working-directory: ./csharp
