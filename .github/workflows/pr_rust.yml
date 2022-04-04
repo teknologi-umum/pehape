@@ -1,0 +1,56 @@
+name: Rust PR Check
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["rust/**"]
+  pull_request:
+    branches: ["master"]
+    paths: ["rust/**"]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./rust
+      CARGO_TERM_COLOR: always
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+          components: clippy, llvm-tools-preview
+      - name: Check using Clippy
+        run: cargo clippy -- -D warnings
+        working-directory: ${{ env.working-directory }}
+      - name: Build
+        run: cargo build --verbose
+        working-directory: ${{ env.working-directory }}
+      - name: Test
+        env:
+          LLVM_PROFILE_FILE: grcov-%p-%m.profraw
+          RUSTFLAGS: -C instrument-coverage
+        run: cargo test
+        working-directory: ${{ env.working-directory }}
+      - name: Install grcov
+        run: cargo install grcov
+      - name: Generate coverage
+        run: |
+          grcov $(find . -name "grcov-*.profraw" -print) \
+            --branch \
+            --ignore-not-existing \
+            --binary-path ./target/debug/ \
+            -s . \
+            -t lcov \
+            --ignore "/*" \
+            -o lcov.info
+        working-directory: ${{ env.working-directory }}
+      - name: Report coverage
+        uses: codecov/codecov-action@v2
+        with:
+          flags: rust
+          working-directory: ${{ env.working-directory }}
