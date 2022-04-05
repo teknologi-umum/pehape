@@ -1,3 +1,3 @@
-module github.com/teknologi-umum/pehape/go
+module github.com/WahidinAji/pehape/go
 
 go 1.18
