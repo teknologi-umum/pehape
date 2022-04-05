@@ -1,21 +1,25 @@
-# Implode
-see `implode_test.go` for sample. Thanks!
+# Install Package
 
-* The first one
-you can run the php file with this command
-```bash
-php implode.php
+Get package using
+`go get github.com/teknologi-umum/pehape/go`
+
+## List `Function` Already Which You Can Use
+
+### How to use?
+ * `Implode`
+   `note` : `Don't forget to import pakage` => `import github.com/teknologi-umum/pehape/go`
+  - sample string   
+```go
+var aray = []string{"Hello", "world"}
+fmt.Println(Implode(array, " "))
+
+//result : Hello world
 ```
-it is just an example of `implode function` on PHP
+  - sample number
+```go
+var array = []int{1, 2, 3, 4, 5}
+fmt.Println(Implode(array, " "))
 
-* The second one
-You can run the implode golang file with the `.go` extension with this command
-```bash
-go test
+//result : 1 2 3 4 5
 ```
 
-* The third one
-`Arigatou`
-
-# Explode
-see `explode_test.go` for sample. Thanks!

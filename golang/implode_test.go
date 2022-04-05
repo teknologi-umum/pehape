@@ -1,21 +1,16 @@
-package main
+package pehape
 
 import (
+	"fmt"
 	"testing"
 )
 
-func exp(s string, opts ...string) string {
-	var option string
-	if len(opts) > 0 {
-		option = opts[0]
-	}
-
-	return s + option
-}
-
 //function to test implode function
 func TestImplode(t *testing.T) {
-	t.Run("CanImplodeArrayOfString", func(t *testing.T) {
+	var array = []string{"Hello", "world"}
+	fmt.Printf("%T", Implode(array, " "))
+	fmt.Println(Implode(array, " "))
+	t.Run("Can Implode Array Of String", func(t *testing.T) {
 		var array = []string{"Hello", "world"}
 
 		if res := Implode(array, " "); res != "Hello world" {
@@ -37,7 +32,7 @@ func TestImplode(t *testing.T) {
 			t.Errorf("Expected Hello world, got %s", res)
 		}
 	})
-	t.Run("CanImplodeArrayOfInt", func(t *testing.T) {
+	t.Run("Can Implode Array Of Int", func(t *testing.T) {
 		var array = []int{1, 2, 3, 4, 5}
 		if res := Implode(array, " "); res != "1 2 3 4 5" {
 			t.Errorf("Expected 1 2 3 4 5, got %s", res)
@@ -46,7 +41,7 @@ func TestImplode(t *testing.T) {
 			t.Errorf("Expected 1:. 2:. 3:. 4:. 5, got %s", res)
 		}
 	})
-	t.Run("CanImplodeEMptyArray", func(t *testing.T) {
+	t.Run("Can Implode EmptyArray", func(t *testing.T) {
 		var arr = []string{}
 		if res := Implode(arr, " "); res != "" {
 			t.Errorf("Expected empty string, got %s", res)

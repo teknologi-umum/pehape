@@ -1,13 +1,21 @@
-package main
+package pehape
 
 import (
 	"fmt"
 )
 
-func Implode[T string | int](array []T, sep ...string) string {
+/*
+ The Implode function joins array/slice element with a string.
+ Parameter :
+ - array => The array/slice to join to a string.
+ - separator => Specifies what to put between the array elements.
+ Return :
+ - The string with all array/slice elements joined.
+*/
+func Implode[T any](array []T, sep ...string) string {
 	var result string
 	for i := 0; i < len(array); i++ {
-		if sep == nil {
+		if sep == nil || len(sep) == 0 {
 			result = result + fmt.Sprint(array[i])
 		} else {
 			if i == 0 {
