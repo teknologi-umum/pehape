@@ -1,15 +1,11 @@
 package pehape
 
 import (
-	"fmt"
 	"testing"
 )
 
 //function to test implode function
 func TestImplode(t *testing.T) {
-	var array = []string{"Hello", "world"}
-	fmt.Printf("%T", Implode(array, " "))
-	fmt.Println(Implode(array, " "))
 	t.Run("Can Implode Array Of String", func(t *testing.T) {
 		var array = []string{"Hello", "world"}
 
