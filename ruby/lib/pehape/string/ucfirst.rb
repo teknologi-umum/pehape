@@ -2,8 +2,6 @@
 
 module Pehape
   def self.ucfirst(str)
-    character = str.strip
-    character[0] = character[0].capitalize
-    character
+    str.sub(/^(\w)/, &:capitalize)
   end
 end

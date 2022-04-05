@@ -2,8 +2,6 @@
 
 module Pehape
   def self.lcfirst(str)
-    character = str.strip
-    character[0] = character[0].downcase
-    character
+    str.sub(/^(\w)/, &:downcase)
   end
 end
