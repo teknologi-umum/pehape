@@ -30,7 +30,7 @@ func Explode(separator string, str string, limit ...int) ([]string, error) {
 
 	var result = strings.Split(str, separator)
 
-	if limit == nil {
+	if limit == nil || len(limit) == 0 {
 		return result, nil
 	} else {
 		limited := limit[0]
