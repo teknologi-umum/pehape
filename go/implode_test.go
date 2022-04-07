@@ -3,7 +3,7 @@ package pehape_test
 import (
 	"testing"
 
-	PHP "github.com/teknologi-umum/pehape/golang"
+	PHP "github.com/teknologi-umum/pehape/go"
 )
 
 //function to test implode function

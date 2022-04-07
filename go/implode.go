@@ -4,14 +4,12 @@ import (
 	"fmt"
 )
 
-/*
- The Implode function joins array/slice element with a string.
- Parameter :
- - array => The array/slice to join to a string.
- - separator => Specifies what to put between the array elements.
- Return :
- - The string with all array/slice elements joined.
-*/
+//  The Implode function joins array/slice element with a string.
+//  Parameter :
+//  - array => The array/slice to join to a string.
+//  - separator => Specifies what to put between the array elements.
+//  Return :
+//  - The string with all array/slice elements joined.
 func Implode[T any](array []T, sep ...string) string {
 	var result string
 	for i := 0; i < len(array); i++ {
