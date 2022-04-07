@@ -1,7 +1,6 @@
 package pehape_test
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 
@@ -18,8 +17,7 @@ func TestExplode(t *testing.T) {
 
 	t.Run("Can Explode Space Separated String By Space", func(t *testing.T) {
 		str := "Hello pehape world"
-		fmt.Println(PHP.Explode(" ", str, -2))
-
+		
 		//nil
 		if res, _ := PHP.Explode(" ", str); res[0] != []string{"Hello", "pehape", "world"}[0] {
 			t.Errorf("Expected Hello, got %s", res[0])
