@@ -2,8 +2,8 @@
 
 module Pehape
   def self.ucfirst(str)
-    stra = str
-    stra[0] = stra[0].capitalize
-    stra
+    dup = str
+    dup[0] = dup[0].capitalize
+    dup
   end
 end

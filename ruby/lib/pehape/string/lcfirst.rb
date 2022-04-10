@@ -2,8 +2,8 @@
 
 module Pehape
   def self.lcfirst(str)
-    stra = str
-    stra[0] = stra[0].downcase
-    stra
+    dup = str
+    dup[0] = dup[0].downcase
+    dup
   end
 end
