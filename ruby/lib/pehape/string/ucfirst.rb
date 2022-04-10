@@ -1,7 +1,9 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 module Pehape
   def self.ucfirst(str)
-    str.sub(/^(\w)/, &:capitalize)
+    stra = str
+    stra[0] = stra[0].capitalize
+    stra
   end
 end

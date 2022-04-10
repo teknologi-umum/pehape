@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 RSpec.describe Pehape do
   it "first character uppercase" do
@@ -18,9 +18,7 @@ RSpec.describe Pehape do
   it "converts non-english first character to  uppercase" do
     expect(Pehape.ucfirst("_PeHaPe Hello")).to eq("_PeHaPe Hello")
     expect(Pehape.ucfirst("1PeHaPe  HE")).to eq("1PeHaPe  HE")
-    expect(Pehape.ucfirst("àPeHaPe  HE")).to eq("àPeHaPe  HE")
-    expect(Pehape.ucfirst("ãPeHaPe  HE")).to eq("ãPeHaPe  HE")
-    expect(Pehape.ucfirst("đPeHaPe  HE")).to eq("đPeHaPe  HE")
-    expect(Pehape.ucfirst("×PeHaPe  HE")).to eq("×PeHaPe  HE")
+    expect(Pehape.ucfirst("ãPeHaPe  HE")).to eq("ÃPeHaPe  HE")
+    expect(Pehape.ucfirst("đPeHaPe  HE")).to eq("ĐPeHaPe  HE")
   end
 end
