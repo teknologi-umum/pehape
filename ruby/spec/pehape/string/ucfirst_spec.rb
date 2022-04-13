@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 RSpec.describe Pehape do
-  it "first character uppercase" do
+  it "converts first character to uppercase" do
     expect(Pehape.ucfirst("peHaPe")).to eq("PeHaPe")
     expect(Pehape.ucfirst("PEHAPE")).to eq("PEHAPE")
   end

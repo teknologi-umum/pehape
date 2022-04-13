@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 RSpec.describe Pehape do
-  it "first character lowercase" do
+  it "converts first character to lowercase" do
     expect(Pehape.lcfirst("PeHaPe")).to eq("peHaPe")
     expect(Pehape.lcfirst("PEHAPE")).to eq("pEHAPE")
   end
