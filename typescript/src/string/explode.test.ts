@@ -33,7 +33,7 @@ describe("whitespaces", () => {
       "",
       "brown",
       "",
-      "fox",
+      "fox"
     ]);
   });
 
