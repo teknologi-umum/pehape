@@ -2,37 +2,34 @@ name: C# PR Check
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     paths: ["csharp/**"]
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths: ["csharp/**"]
 
 jobs:
   build:
     name: Build and Test
     runs-on: windows-latest
-    env:
-      working-directory: ./csharp
+    defaults:
+      run:
+        working-directory: ./csharp
     timeout-minutes: 5
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ${{ env.working-directory }}
       - name: Build
         run: dotnet build --no-restore --configuration Release
-        working-directory: ${{ env.working-directory }}
       - name: Test
         run: dotnet test --no-build --configuration Release --verbosity normal --collect="XPlat Code Coverage"
-        working-directory: ${{ env.working-directory }}
       - name: Report coverage
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           flags: csharp
-          working-directory: ${{ env.working-directory }}
