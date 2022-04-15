@@ -1,1 +1,1 @@
-export *  from "./explode";
+export * from "./explode";

@@ -3,7 +3,6 @@ name: C# PR Check
 on:
   push:
     branches: [master]
-    paths: ["csharp/**"]
   pull_request:
     branches: [master]
     paths: ["csharp/**"]

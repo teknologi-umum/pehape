@@ -3,7 +3,6 @@ name: Ruby PR Check
 on:
   push:
     branches: [master]
-    paths: ["ruby/**"]
   pull_request:
     branches: [master]
     paths: ["ruby/**"]

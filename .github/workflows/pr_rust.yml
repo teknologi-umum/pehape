@@ -3,7 +3,6 @@ name: Rust PR Check
 on:
   push:
     branches: ["master"]
-    paths: ["rust/**"]
   pull_request:
     branches: ["master"]
     paths: ["rust/**"]

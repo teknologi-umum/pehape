@@ -3,7 +3,6 @@ name: Clojure PR Check
 on:
   push:
     branches: ["master"]
-    paths: ["clojure/**"]
   pull_request:
     branches: ["master"]
     paths: ["clojure/**"]
