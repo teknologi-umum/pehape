@@ -36,10 +36,8 @@ func Explode(separator string, str string, limit ...int) ([]string, error) {
 			return result[:1], nil
 		} else if limited < 0 {
 			return result[:len(result)+limited], nil
-		} else if limited > 0 {
-			return result[:limited], nil
 		} else {
-			return result, nil
+			return result[:limited], nil
 		}
 	}
 
