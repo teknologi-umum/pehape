@@ -37,6 +37,18 @@ fmt.Println(pehape.Implode(array, " "))
  * `Ucwords`
 ```go
 var bar = "HELLO WORLD!"
-fmt.Println(pehape.Ucwords(foo))
+fmt.Println(pehape.Ucwords(bar))
 //result : "Hello World!"
 ```
+
+ * `Strrev`
+ ```go
+ var foo = "Hello World!"
+ fmt.Println(pehape.Strrev(foo))
+ //result : "!dlroW olleH"
+
+ var bar = "kasur rusak"
+ fmt.Println(pehape.Strrev(bar))
+ //result : "kasur rusak"
+ ```
+ 
