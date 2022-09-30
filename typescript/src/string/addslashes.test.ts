@@ -2,43 +2,6 @@
 /* eslint-disable no-useless-escape */
 import { addslashes } from "./addslashes";
 
-const texts = [
-"Hello world",
-
-// string with single quotes
-"how're you doing?", 
-"don't disturb u'r neighbours",
-"don't disturb u'r neighbours''",
-"'",
-
-// string with double quotes
-"he said, \"he will be on leave\"",
-"he said, \"\"he will be on leave\"",
-"\"\"\"typesctipt\"\"\"",
-"",
- // eslint-disable-next-line no-useless-escape
-"\'",
-'"',
-"hello\"",
-     
-// string with backslash characters
-'Is your name Ram\Krishna?',
-'\\0.0.0.0',
-'c:\php\testcase\addslashes',
-'\\',
-
-
-// mixed strings
-"'\\0.0.0.0'",
-'"\\0.0.0.0"',
-
-// string with hexadecimal number
-"0xABCDEF0123456789",
-"\xabcdef0123456789",
-'!@#$%&*@$%#&/;:,<>',
-"hello\x00world"
-];
-
 describe("empty parameters", () => {
   it("should return empty string", () => {
     expect(addslashes("")).toBe("");
