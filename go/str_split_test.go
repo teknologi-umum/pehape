@@ -33,37 +33,50 @@ func TestGetCapacity(t *testing.T) {
 
 func TestStrSplit(t *testing.T) {
 	tests := []struct {
-		name     string
-		expected []string
-		s        string
-		length   int
+		name        string
+		expected    []string
+		errExpected error
+		s           string
+		length      []int
 	}{
-		{"with no pad \"hello\"", []string{"h", "e", "l", "l", "o"}, "hello", 0},
-		{"with pad 3 \"hello\"", []string{"hel", "lo"}, "hello", 3},
-		{"with pad 2 \"hello\"", []string{"he", "ll", "o"}, "hello", 2},
-		{"with pad 4 \"hello\"", []string{"hell", "o"}, "hello", 4},
-		{"with no pad \"Hello Friend\"", []string{"H", "e", "l", "l", "o", " ", "F", "r", "i", "e", "n", "d"}, "Hello Friend", 0},
-		{"with pad 5 \"Hello Friend\"", []string{"Hello", " Frie", "nd"}, "Hello Friend", 5},
-		{"with no data and pad", []string{}, "", 0},
-		{"with no data with pad", []string{}, "", 5},
+		{"with no pad \"hello\"", []string{"h", "e", "l", "l", "o"}, nil, "hello", []int{1}},
+		{"with pad 3 \"hello\"", []string{"hel", "lo"}, nil, "hello", []int{3}},
+		{"with pad 2 \"hello\"", []string{"he", "ll", "o"}, nil, "hello", []int{2}},
+		{"with pad 4 \"hello\"", []string{"hell", "o"}, nil, "hello", []int{4}},
+		{"with no pad \"Hello Friend\"", []string{"H", "e", "l", "l", "o", " ", "F", "r", "i", "e", "n", "d"}, nil, "Hello Friend", []int{1}},
+		{"with pad 5 \"Hello Friend\"", []string{"Hello", " Frie", "nd"}, nil, "Hello Friend", []int{5}},
+		{"with no data and pad", []string{""}, nil, "", []int{1}},
+		{"with length < 1", []string{}, errMustGreaterThanZero, "", []int{0}},
+		{"with 3 params", []string{}, errMust2Params, "", []int{0, 4}},
+		{"with no data with pad", []string{""}, nil, "", []int{5}},
+		{"with length > len(s)", []string{"hello"}, nil, "hello", []int{500}},
 	}
 	for _, tt := range tests {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			var actual []string
-			if tt.length == 0 {
-				actual = StrSplit(tt.s)
+			var err error
+			if tt.length == nil {
+				actual, err = StrSplit(tt.s)
 			} else {
-				actual = StrSplit(tt.s, tt.length)
+				actual, err = StrSplit(tt.s, tt.length...)
 			}
 
-			if len(actual) != len(tt.expected) {
-				t.Fatalf("length not same, len actual : %d, len expected : %d", len(actual), len(tt.expected))
-			}
+			if tt.errExpected == nil {
 
-			for i, v := range tt.expected {
-				if v != actual[i] {
-					t.Errorf("(%s): expected %s, actual %s", tt.s, v, actual[i])
+				if len(actual) != len(tt.expected) {
+					t.Fatalf("length not same, len actual : %d, len expected : %d", len(actual), len(tt.expected))
+				}
+
+				for i, v := range tt.expected {
+					if v != actual[i] {
+						t.Errorf("(%s): expected %s, actual %s", tt.s, v, actual[i])
+					}
+				}
+
+			} else {
+				if err != tt.errExpected {
+					t.Errorf("(%s): expected (%v), actual (%v)", tt.s, tt.errExpected, err)
 				}
 			}
 		})

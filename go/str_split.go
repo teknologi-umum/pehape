@@ -1,14 +1,17 @@
 package pehape
 
-import "fmt"
+import (
+	"errors"
+)
 
-func StrSplit(s string, length ...int) []string {
-	lenS := len(s)
-	if lenS == 0 {
-		return []string{}
-	}
+var (
+	errMust2Params         = errors.New("expects at most 2 parameters")
+	errMustGreaterThanZero = errors.New("The length of each segment must be greater than zero")
+)
+
+func StrSplit(s string, length ...int) ([]string, error) {
 	if len(length) > 1 {
-		panic(fmt.Sprintf("expects at most 2 parameters, %d given", len(length)+1))
+		return nil, errMust2Params
 	}
 
 	leng := 1
@@ -17,7 +20,16 @@ func StrSplit(s string, length ...int) []string {
 	}
 
 	if leng < 1 {
-		panic("The length of each segment must be greater than zero")
+		return nil, errMustGreaterThanZero
+	}
+
+	lenS := len(s)
+	if lenS == 0 {
+		return []string{""}, nil
+	}
+
+	if leng > lenS {
+		return []string{s}, nil
 	}
 
 	capacity, mod := getCapacity(lenS, leng)
@@ -35,7 +47,7 @@ func StrSplit(s string, length ...int) []string {
 	if mod > 0 {
 		results = append(results, s[lenS-mod:])
 	}
-	return results
+	return results, nil
 }
 
 func getCapacity(lenS, n int) (int, int) {
