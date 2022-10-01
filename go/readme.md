@@ -2,6 +2,24 @@
 `import "github.com/teknologi-umum/pehape/go"`
 
 ## Usage?
+ * `Levenshtein`
+ ```go
+ str1 := "kitten"
+ str2 := "sitting"
+ fmt.Println(pehape.Levenshtein(str1,str2))
+ //result : 3
+ ```
+ with custom cost
+ ```go
+ str1 := "kitten"
+ str2 := "sitting"
+ insertion_cost := 1
+ replacement_cost := 2
+ deletion_cost := 3
+ fmt.Println(pehape.Levenshtein(str1,str2,insertion_cost,replacement_cost,deletion_cost))
+ //result : 5
+ ```
+
  * `Implode`
   - sample string
 ```go
