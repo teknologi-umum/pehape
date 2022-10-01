@@ -1,4 +1,4 @@
-package pehape
+package pehape_test
 
 import (
 	"testing"
