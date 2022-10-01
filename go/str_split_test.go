@@ -1,6 +1,8 @@
 package pehape
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestGetCapacity(t *testing.T) {
 	tests := []struct {
@@ -41,7 +43,7 @@ func TestStrSplit(t *testing.T) {
 		{"with pad 2 \"hello\"", []string{"he", "ll", "o"}, "hello", 2},
 		{"with pad 4 \"hello\"", []string{"hell", "o"}, "hello", 4},
 		{"with no pad \"Hello Friend\"", []string{"H", "e", "l", "l", "o", " ", "F", "r", "i", "e", "n", "d"}, "Hello Friend", 0},
-		{"with pad 5 \"Hello Friend\"", []string{"Hello", " Frie", "nd"}, "hello", 5},
+		{"with pad 5 \"Hello Friend\"", []string{"Hello", " Frie", "nd"}, "Hello Friend", 5},
 		{"with no data and pad", []string{}, "", 0},
 		{"with no data with pad", []string{}, "", 5},
 	}
@@ -54,11 +56,14 @@ func TestStrSplit(t *testing.T) {
 			} else {
 				actual = StrSplit(tt.s, tt.length)
 			}
+
 			if len(actual) != len(tt.expected) {
-				for i, v := range actual {
-					if v != tt.expected[i] {
-						t.Errorf("(%s): expected %s, actual %s", tt.s, tt.expected[i], v)
-					}
+				t.Fatalf("length not same, len actual : %d, len expected : %d", len(actual), len(tt.expected))
+			}
+
+			for i, v := range tt.expected {
+				if v != actual[i] {
+					t.Errorf("(%s): expected %s, actual %s", tt.s, v, actual[i])
 				}
 			}
 		})

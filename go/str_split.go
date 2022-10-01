@@ -18,18 +18,18 @@ func StrSplit(s string, length ...int) []string {
 
 	results := make([]string, 0, capacity)
 
-	current := 0
+	to := leng
 	for i := 0; i < lenS; i += leng {
-		if i < lenS {
-			results = append(results, s[current:i])
-			current += leng
+		if to <= lenS {
+			results = append(results, s[i:to])
+			to += leng
 		}
 	}
 
 	if mod > 0 {
 		results = append(results, s[lenS-mod:])
 	}
-	return nil
+	return results
 }
 
 func getCapacity(lenS, n int) (int, int) {
