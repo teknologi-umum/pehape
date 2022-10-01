@@ -1,17 +1,23 @@
 package pehape
 
+import "fmt"
+
 func StrSplit(s string, length ...int) []string {
 	lenS := len(s)
 	if lenS == 0 {
 		return []string{}
 	}
 	if len(length) > 1 {
-		panic("length's len must be 1")
+		panic(fmt.Sprintf("expects at most 2 parameters, %d given", len(length)+1))
 	}
 
 	leng := 1
 	if len(length) == 1 {
 		leng = length[0]
+	}
+
+	if leng < 1 {
+		panic("The length of each segment must be greater than zero")
 	}
 
 	capacity, mod := getCapacity(lenS, leng)
