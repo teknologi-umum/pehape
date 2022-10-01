@@ -10,7 +10,6 @@ import (
 // Return
 // - str => string of ASCII characters
 // - error => error if encoded string contain non hexadecimal character
-
 func Hex2Bin(encoded string) (str string, err error) {
 	s, err := hex.DecodeString(encoded)
 	return string(s), err

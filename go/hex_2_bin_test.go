@@ -1,8 +1,11 @@
-package pehape
+package pehape_test
 
 import (
 	"encoding/hex"
+	"errors"
 	"testing"
+
+	PHP "github.com/teknologi-umum/pehape/go"
 )
 
 func TestHex2Bin(t *testing.T) {
@@ -15,7 +18,7 @@ func TestHex2Bin(t *testing.T) {
 			param:  "48656c6c6f20576f726c642121",
 			expect: "Hello World!!",
 		}
-		if res, _ := Hex2Bin(tt.param); res != tt.expect {
+		if res, _ := PHP.Hex2Bin(tt.param); res != tt.expect {
 			t.Errorf("expected %s, but got %s", tt.expect, res)
 		}
 	})
@@ -24,11 +27,11 @@ func TestHex2Bin(t *testing.T) {
 		tt := &test{
 			param: "4",
 		}
-		_, err := Hex2Bin(tt.param)
+		_, err := PHP.Hex2Bin(tt.param)
 		if err == nil {
 			t.Errorf("expected error, but got nil")
 		}
-		if err != hex.ErrLength {
+		if !errors.Is(err, hex.ErrLength) {
 			t.Errorf("expected %s, but got %s", hex.ErrLength, err)
 		}
 	})
@@ -37,7 +40,7 @@ func TestHex2Bin(t *testing.T) {
 		tt := &test{
 			param: "Incorrect params",
 		}
-		_, err := Hex2Bin(tt.param)
+		_, err := PHP.Hex2Bin(tt.param)
 		if err == nil {
 			t.Errorf("expected error, but got nil")
 		}

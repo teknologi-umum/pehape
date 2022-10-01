@@ -1,7 +1,9 @@
-package pehape
+package pehape_test
 
 import (
 	"testing"
+
+	PHP "github.com/teknologi-umum/pehape/go"
 )
 
 func TestBin2Hex(t *testing.T) {
@@ -15,7 +17,7 @@ func TestBin2Hex(t *testing.T) {
 			expect: "48656c6c6f20576f726c642121",
 		}
 
-		if res := Bin2Hex(tt.param); res != tt.expect {
+		if res := PHP.Bin2Hex(tt.param); res != tt.expect {
 			t.Errorf("expected %s, but got %s", tt.expect, res)
 		}
 	})
@@ -26,7 +28,7 @@ func TestBin2Hex(t *testing.T) {
 			expect: "6861636b746f6265726665737431323334214023",
 		}
 
-		if res := Bin2Hex(tt.param); res != tt.expect {
+		if res := PHP.Bin2Hex(tt.param); res != tt.expect {
 			t.Errorf("expected %s, but got %s", tt.expect, res)
 		}
 	})
