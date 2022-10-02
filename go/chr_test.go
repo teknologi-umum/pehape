@@ -1,8 +1,8 @@
 package pehape_test
 
 import (
-	"bytes"
 	"fmt"
+	"strings"
 	"testing"
 
 	pehape "github.com/teknologi-umum/pehape/go"
@@ -46,16 +46,12 @@ func TestChr(t *testing.T) {
 	}
 
 	t.Run("symbol", func(t *testing.T) {
-		want := []byte("🐘")
-		
-		var got bytes.Buffer
-		got.WriteString(pehape.Chr(240))
-		got.WriteString(pehape.Chr(159))
-		got.WriteString(pehape.Chr(144))
-		got.WriteString(pehape.Chr(152))
+		want := "🐘"
 
-		if !bytes.EqualFold(want, got.Bytes()) {
-			t.Errorf("want: %q, got: %q", want, got.Bytes())
+		got := pehape.Chr(240) + pehape.Chr(159) + pehape.Chr(144) + pehape.Chr(152)
+
+		if !strings.EqualFold(want, got) {
+			t.Errorf("want: %q, got: %q", want, got)
 		}
 	})
 }
