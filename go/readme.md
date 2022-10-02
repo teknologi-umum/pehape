@@ -13,10 +13,10 @@
  ```go
  str1 := "kitten"
  str2 := "sitting"
- insertion_cost := 1
- replacement_cost := 2
- deletion_cost := 3
- fmt.Println(pehape.Levenshtein(str1,str2,insertion_cost,replacement_cost,deletion_cost))
+ insertionCost := 1
+ replacementCost := 2
+ deletionCost := 3
+ fmt.Println(pehape.Levenshtein(str1, str2, insertionCost, replacementCost, deletionCost))
  //result : 5
  ```
 
