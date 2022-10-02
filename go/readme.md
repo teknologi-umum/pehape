@@ -76,3 +76,19 @@ fmt.Println(pehape.Ucwords(bar))
  //result : "kasur rusak"
  ```
  
+  * `Chr`
+ ```go
+ var AInASCII = pehape.Chr(65)
+ fmt.Println(AInASCII)
+ var charFromNumber = pehape.Chr(65)
+ fmt.Println(charFromNumber)
+ //result : "A"
+ var charFromOctal = pehape.Chr(053)
+ fmt.Println(charFromOctal)
+ //result: "+"
+ var charFromHex = pehape.Chr(0x52)
+ fmt.Println(charFromHex)
+ //result: "R"
+ var symbol = pehape.Chr(240) + pehape.Chr(159) + pehape.Chr(144) + pehape.Chr(152)
+ fmt.Println(symbol)
+ ```
