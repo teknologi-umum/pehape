@@ -22,7 +22,7 @@ public class PehapeString {
     public static String[] explode(String separator, String content, Integer limit) {
 
         if (limit == null) {
-            return explode(separator, content);
+            return explode(separator, content, 0);
         }
 
         if (StringUtils.isEmpty(separator)) {
