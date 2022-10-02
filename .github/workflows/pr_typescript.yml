@@ -30,7 +30,7 @@ jobs:
       - name: Test
         run: pnpm run test
       - name: Build
-        run: pnpx tsc
+        run: pnpm run build
       - name: Report coverage
         uses: codecov/codecov-action@v2
         with:
