@@ -6,7 +6,7 @@
  ```go
  str1 := "kitten"
  str2 := "sitting"
- fmt.Println(pehape.Levenshtein(str1,str2))
+ fmt.Println(pehape.Levenshtein(str1, str2))
  //result : 3
  ```
  with custom cost
