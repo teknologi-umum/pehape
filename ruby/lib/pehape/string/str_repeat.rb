@@ -2,10 +2,9 @@
 
 module Pehape
   def self.str_repeat(string, times)
-    begin
-        string * times
-    rescue => exception
-        ""
-    end
+    times = times.to_i
+    return "" if times <= 0
+
+    string * times
   end
 end
