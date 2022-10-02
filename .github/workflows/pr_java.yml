@@ -33,5 +33,5 @@ jobs:
         files: ./target/site/jacoco/jacoco.xml
         flags: java
     - name: Build
-      uses: mvn clean package
+      run: mvn clean package
 
