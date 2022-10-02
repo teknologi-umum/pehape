@@ -1,6 +1,7 @@
 package pehape
 
-func Addslashes(str string) string {
+//Returns a string with backslashes added before characters that need to be escaped. These characters are: \\ " and \'
+func AddSlashes(str string) string {
 	var tmpRune []rune
 	strRune := []rune(str)
 	for _, ch := range strRune {
