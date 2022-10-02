@@ -14,6 +14,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./java
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -23,15 +26,12 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run Test
-      working-directory: ./java  
       run: mvn test
     - name: Report Coverage
-      working-directory: ./java 
       uses: codecov/codecov-action@v3
       with:
         files: ./target/site/jacoco/jacoco.xml
         flags: java
     - name: Build
-      working-directory: ./java 
       uses: mvn clean package
 
