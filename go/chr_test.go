@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	pehape "github.com/teknologi-umum/pehape/go"
+	PHP "github.com/teknologi-umum/pehape/go"
 )
 
 func TestChr(t *testing.T) {
@@ -37,7 +37,7 @@ func TestChr(t *testing.T) {
 
 	for i, c := range testcases {
 		t.Run(fmt.Sprint(i+1), func(t *testing.T) {
-			got := pehape.Chr(c.input)
+			got := PHP.Chr(c.input)
 
 			if c.wantOuput != got {
 				t.Errorf("want: %q, got: %q", c.wantOuput, got)
@@ -48,7 +48,7 @@ func TestChr(t *testing.T) {
 	t.Run("symbol", func(t *testing.T) {
 		want := "🐘"
 
-		got := pehape.Chr(240) + pehape.Chr(159) + pehape.Chr(144) + pehape.Chr(152)
+		got := PHP.Chr(240) + PHP.Chr(159) + PHP.Chr(144) + PHP.Chr(152)
 
 		if !strings.EqualFold(want, got) {
 			t.Errorf("want: %q, got: %q", want, got)
