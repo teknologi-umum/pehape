@@ -23,6 +23,7 @@ func TestGetCapacity(t *testing.T) {
 	for _, tt := range tests {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
 			capacityAct, modAct := getCapacity(tt.lenS, tt.leng)
 			if capacityAct != tt.capacity || modAct != tt.mod {
 				t.Errorf("(%d, %d): expected (%d, %d), actual (%d, %d)", tt.lenS, tt.mod, tt.capacity, tt.mod, capacityAct, modAct)
@@ -39,13 +40,13 @@ func TestStrSplit(t *testing.T) {
 		s           string
 		length      []int
 	}{
-		{"with no pad \"hello\"", []string{"h", "e", "l", "l", "o"}, nil, "hello", []int{1}},
+		{"with no pad \"hello\"", []string{"h", "e", "l", "l", "o"}, nil, "hello", nil},
 		{"with pad 3 \"hello\"", []string{"hel", "lo"}, nil, "hello", []int{3}},
 		{"with pad 2 \"hello\"", []string{"he", "ll", "o"}, nil, "hello", []int{2}},
 		{"with pad 4 \"hello\"", []string{"hell", "o"}, nil, "hello", []int{4}},
-		{"with no pad \"Hello Friend\"", []string{"H", "e", "l", "l", "o", " ", "F", "r", "i", "e", "n", "d"}, nil, "Hello Friend", []int{1}},
+		{"with no pad \"Hello Friend\"", []string{"H", "e", "l", "l", "o", " ", "F", "r", "i", "e", "n", "d"}, nil, "Hello Friend", nil},
 		{"with pad 5 \"Hello Friend\"", []string{"Hello", " Frie", "nd"}, nil, "Hello Friend", []int{5}},
-		{"with no data and pad", []string{""}, nil, "", []int{1}},
+		{"with no data and pad", []string{""}, nil, "", nil},
 		{"with length < 1", []string{}, errMustGreaterThanZero, "", []int{0}},
 		{"with 3 params", []string{}, errMust2Params, "", []int{0, 4}},
 		{"with no data with pad", []string{""}, nil, "", []int{5}},
@@ -54,6 +55,7 @@ func TestStrSplit(t *testing.T) {
 	for _, tt := range tests {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
 			var actual []string
 			var err error
 			if tt.length == nil {
