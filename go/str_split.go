@@ -1,8 +1,12 @@
 package pehape
 
 import (
-	"fmt"
+	"errors"
 	"math"
+)
+
+var (
+	ErrInvalidSegmentLength = errors.New("the length of each segment must be greater than zero")
 )
 
 // StrSplit splits a string into an array.
@@ -12,15 +16,15 @@ import (
 // Returns
 // - res => array of splitted string
 // - err => error if length less than 1
-func StrSplit(str string, length ...int) (res []string, err error) {
+func StrSplit(str string, segLength ...int) (res []string, err error) {
 	var charLen int = 1
 	var strLen int = len(str)
-	if len(length) > 0 {
-		if length[0] < 1 {
-			err = fmt.Errorf("the length of each segment must be greater than zero")
+	if len(segLength) > 0 {
+		if segLength[0] < 1 {
+			err = ErrInvalidSegmentLength
 			return
 		}
-		charLen = length[0]
+		charLen = segLength[0]
 	}
 
 	for i := 1; i <= int(math.Ceil(float64(strLen)/float64(charLen))); i++ {

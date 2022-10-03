@@ -1,6 +1,7 @@
 package pehape_test
 
 import (
+	"errors"
 	"testing"
 
 	PHP "github.com/teknologi-umum/pehape/go"
@@ -27,6 +28,9 @@ func TestStrSplit(t *testing.T) {
 		_, err := PHP.StrSplit(tt.param.str, tt.param.length...)
 		if err == nil {
 			t.Errorf("expect error, but got error nil")
+		}
+		if !errors.Is(err, PHP.ErrInvalidSegmentLength) {
+			t.Errorf("expect error %s, but got %s", PHP.ErrInvalidSegmentLength, err)
 		}
 	})
 
