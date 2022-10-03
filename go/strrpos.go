@@ -11,24 +11,24 @@ var (
 
 // The Strrpos() function finds the position of the last occurrence of a string inside another string.
 // Parameters
-//   - str => The string to search in.
-//   - find => Specifies the string to find
-//   - offset =>  If zero or positive, the search is performed left to right skipping the first offset bytes of the str.
-//     If negative, the search is performed right to left skipping the last offset bytes of the str and searching for the first occurrence of find.
-func Strrpos(str, find string, offset ...int) (int, error) {
+//   - haystack => The string to search in.
+//   - needle => Specifies the string to find
+//   - offset =>  If zero or positive, the search is performed left to right skipping the first offset bytes of the haystack.
+//     If negative, the search is performed right to left skipping the last offset bytes of the haystack and searching for the first occurrence of needle.
+func Strrpos(haystack, needle string, offset ...int) (int, error) {
 	var o int = 0
 	if len(offset) > 0 {
 		o = offset[0]
-		if o >= len(str) || (len(str)+o < 0) {
+		if o >= len(haystack) || (len(haystack)+o < 0) {
 			return 0, ErrSttrposInvalidOffset
 		}
 	}
 	if o < 0 {
 		// read string from right
-		for i := len(str) + o; i >= len(find); i-- {
-			left := (i - len(find)) + 1
+		for i := len(haystack) + o; i >= len(needle); i-- {
+			left := (i - len(needle)) + 1
 			right := i + 1
-			if str[left:right] == find {
+			if haystack[left:right] == needle {
 				return left, nil
 			}
 		}
@@ -36,10 +36,10 @@ func Strrpos(str, find string, offset ...int) (int, error) {
 	}
 
 	// read string from right
-	for i := len(str); i >= len(find)+o; i-- {
-		left := i - len(find)
+	for i := len(haystack); i >= len(needle)+o; i-- {
+		left := i - len(needle)
 		right := i
-		if str[left:right] == find {
+		if haystack[left:right] == needle {
 			return left, nil
 		}
 	}
