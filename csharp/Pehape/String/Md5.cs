@@ -24,7 +24,7 @@ namespace Pehape {
 			var hashBytes = Md5Raw(input);
 			var sb = new StringBuilder();
 			foreach (var t in hashBytes) {
-				sb.Append(t.ToString("X2", CultureInfo.InvariantCulture).ToLowerInvariant());
+				sb.Append(t.ToString("x2", CultureInfo.InvariantCulture));
 			}
 
 			return sb.ToString();
