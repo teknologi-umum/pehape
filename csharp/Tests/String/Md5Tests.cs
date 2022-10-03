@@ -45,6 +45,7 @@ namespace Tests.String {
 				sb.Append(t.ToString("X2", CultureInfo.InvariantCulture).ToLowerInvariant());
 			}
 
+			raw.Length.Should().Be(16);
 			sb.ToString().Should().Be(result);
 		}
 	}
