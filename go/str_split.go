@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-// The str_split() function splits a string into an array.
+// StrSplit splits a string into an array.
 // Parameters
 // - str => string to be splitted
 // - length => (optional) only first index is used. Specifies the length of each array element. Default is 1.
