@@ -1,9 +1,13 @@
 package pehape
 
 import (
-	"fmt"
+	"errors"
 	"regexp"
 	"strings"
+)
+
+var (
+	ErrRTrimInvalidRange = errors.New("invalid character range")
 )
 
 // The RTrim() function removes whitespace or other predefined characters from the right side of a string.
@@ -19,20 +23,20 @@ func RTrim(str string, chars ...string) (res string, err error) {
 	if len(chars) == 0 {
 		return strings.TrimRight(str, " \t\n\x0B\r"), nil
 	}
-	s := strings.Join(chars, "")
+
 	var charLists string
 	// reverse string to read regex from right side (like php doing)
-	rStr := rev(s)
+	reversedString := Strrev(strings.Join(chars, ""))
 	// use regex to get range pattern
 	r := regexp.MustCompile(`.\.{2}.`)
 	// concate non-range char
-	charLists = strings.Join(r.Split(rStr, -1), "")
+	charLists = strings.Join(r.Split(reversedString, -1), "")
 	// range char pattern
-	rChar := r.FindAll([]byte(rStr), -1)
+	rangedChar := r.FindAll([]byte(reversedString), -1)
 	// generates correct characters between ranges
-	for _, val := range rChar {
+	for _, val := range rangedChar {
 		if val[3] > val[0] {
-			return "", fmt.Errorf("invalid range")
+			return "", ErrRTrimInvalidRange
 		}
 
 		for i := val[3]; i <= val[0]; i++ {

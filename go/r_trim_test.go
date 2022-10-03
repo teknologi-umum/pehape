@@ -1,6 +1,7 @@
 package pehape_test
 
 import (
+	"errors"
 	"testing"
 
 	PHP "github.com/teknologi-umum/pehape/go"
@@ -77,6 +78,9 @@ func TestRTrim(t *testing.T) {
 		_, err := PHP.RTrim(tt.param.str, tt.param.charLists...)
 		if err == nil {
 			t.Errorf("expected error but got nil")
+		}
+		if !errors.Is(err, PHP.ErrRTrimInvalidRange) {
+			t.Errorf("expect error %s, but got %s", PHP.ErrRTrimInvalidRange, err)
 		}
 	})
 

@@ -1,9 +1,13 @@
 package pehape
 
 import (
-	"fmt"
+	"errors"
 	"regexp"
 	"strings"
+)
+
+var (
+	ErrLTrimInvalidRange = errors.New("invalid character range")
 )
 
 // The LTrim() function removes whitespace or other predefined characters from the left side of a string.
@@ -19,20 +23,20 @@ func LTrim(str string, chars ...string) (res string, err error) {
 	if len(chars) == 0 {
 		return strings.TrimLeft(str, " \t\n\x0B\r"), nil
 	}
-	s := strings.Join(chars, "")
+
 	var charLists string
 	// reverse string to read regex from right side (like php doing)
-	rStr := rev(s)
+	reversedString := Strrev(strings.Join(chars, ""))
 	// use regex to get range pattern
 	r := regexp.MustCompile(`.\.{2}.`)
 	// concate non-range char
-	charLists = strings.Join(r.Split(rStr, -1), "")
+	charLists = strings.Join(r.Split(reversedString, -1), "")
 	// range char pattern
-	rChar := r.FindAll([]byte(rStr), -1)
+	rangedChar := r.FindAll([]byte(reversedString), -1)
 	// generates correct characters between ranges
-	for _, val := range rChar {
+	for _, val := range rangedChar {
 		if val[3] > val[0] {
-			return "", fmt.Errorf("invalid range")
+			return "", ErrLTrimInvalidRange
 		}
 
 		for i := val[3]; i <= val[0]; i++ {
@@ -40,12 +44,4 @@ func LTrim(str string, chars ...string) (res string, err error) {
 		}
 	}
 	return strings.TrimLeft(str, charLists), nil
-}
-
-// todo: use pehape.Strrev
-func rev(str string) (res string) {
-	for i := len(str) - 1; i >= 0; i-- {
-		res += string(str[i])
-	}
-	return
 }
