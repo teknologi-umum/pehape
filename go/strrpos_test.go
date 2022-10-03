@@ -19,36 +19,30 @@ func TestStrrpos(t *testing.T) {
 	}
 
 	t.Run("It should return error if the given offset is invalid", func(t *testing.T) {
-		tt := &test{
-			param: param{
-				str:    "GoLang",
-				find:   "Go",
-				offset: 6,
+		tests := []test{
+			{
+				param: param{
+					str:    "GoLang",
+					find:   "Go",
+					offset: 6,
+				},
+			},
+			{
+				param: param{
+					str:    "GoLang",
+					find:   "Go",
+					offset: -7,
+				},
 			},
 		}
-		_, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
-		if err == nil {
-			t.Errorf("expect error, but got nil")
-		}
-		if !errors.Is(err, PHP.ErrSttrposInvalidOffset) {
-			t.Errorf("expect error %s, but got %s", PHP.ErrSttrposInvalidOffset, err)
-		}
-	})
-
-	t.Run("It should return error if the given offset is invalid", func(t *testing.T) {
-		tt := &test{
-			param: param{
-				str:    "GoLang",
-				find:   "Go",
-				offset: -7,
-			},
-		}
-		_, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
-		if err == nil {
-			t.Errorf("expect error, but got nil")
-		}
-		if !errors.Is(err, PHP.ErrSttrposInvalidOffset) {
-			t.Errorf("expect error %s, but got %s", PHP.ErrSttrposInvalidOffset, err)
+		for _, tt := range tests {
+			_, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
+			if err == nil {
+				t.Errorf("expect error, but got nil")
+			}
+			if !errors.Is(err, PHP.ErrSttrposInvalidOffset) {
+				t.Errorf("expect error %s, but got %s", PHP.ErrSttrposInvalidOffset, err)
+			}
 		}
 	})
 
@@ -72,77 +66,62 @@ func TestStrrpos(t *testing.T) {
 	})
 
 	t.Run("It should return the position of the given string correctly if the given offset is not empty", func(t *testing.T) {
-		tt := &test{
-			param: param{
-				str:    "I love Go, I love Go too!",
-				find:   "Go",
-				offset: 10,
+		tests := []test{
+			{
+				param: param{
+					str:    "I love Go, I love Go too!",
+					find:   "Go",
+					offset: 10,
+				},
+				expect: 18,
 			},
-			expect: 18,
-		}
-
-		res, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
-
-		if err != nil {
-			t.Errorf("expect error nil, but got %s", err)
-		}
-		if res != tt.expect {
-			t.Errorf("expect %d, but got %d", tt.expect, res)
-		}
-	})
-
-	t.Run("It should return the position of the given string correctly if the given offset is not empty", func(t *testing.T) {
-		tt := &test{
-			param: param{
-				str:    "I love Go, I love Go too!",
-				find:   "Go",
-				offset: -10,
+			{
+				param: param{
+					str:    "I love Go, I love Go too!",
+					find:   "Go",
+					offset: -10,
+				},
+				expect: 7,
 			},
-			expect: 7,
 		}
 
-		res, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
+		for _, tt := range tests {
+			res, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
 
-		if err != nil {
-			t.Errorf("expect error nil, but got %s", err)
-		}
-		if res != tt.expect {
-			t.Errorf("expect %d, but got %d", tt.expect, res)
+			if err != nil {
+				t.Errorf("expect error nil, but got %s", err)
+			}
+			if res != tt.expect {
+				t.Errorf("expect %d, but got %d", tt.expect, res)
+			}
 		}
 	})
 
 	t.Run("It should return error if string not found", func(t *testing.T) {
-		tt := &test{
-			param: param{
-				str:    "I love Go, I love Go too!",
-				find:   "Go",
-				offset: -25,
+		tests := []test{
+			{
+				param: param{
+					str:    "I love Go, I love Go too!",
+					find:   "Go",
+					offset: -25,
+				},
+			},
+			{
+				param: param{
+					str:  "I love Go, I love Go too!",
+					find: "hahaha",
+				},
 			},
 		}
 
-		_, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
-		if err == nil {
-			t.Errorf("expect error, but got nil")
-		}
-		if !errors.Is(err, PHP.ErrSttrposStringNotFound) {
-			t.Errorf("expect error nil, but got %s", err)
-		}
-	})
-
-	t.Run("It should return error if string not found", func(t *testing.T) {
-		tt := &test{
-			param: param{
-				str:  "I love Go, I love Go too!",
-				find: "hahaha",
-			},
-		}
-
-		_, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
-		if err == nil {
-			t.Errorf("expect error, but got nil")
-		}
-		if !errors.Is(err, PHP.ErrSttrposStringNotFound) {
-			t.Errorf("expect error nil, but got %s", err)
+		for _, tt := range tests {
+			_, err := PHP.Strrpos(tt.param.str, tt.param.find, tt.param.offset)
+			if err == nil {
+				t.Errorf("expect error, but got nil")
+			}
+			if !errors.Is(err, PHP.ErrSttrposStringNotFound) {
+				t.Errorf("expect error nil, but got %s", err)
+			}
 		}
 	})
 }
