@@ -65,7 +65,7 @@ fmt.Println(pehape.Explode(" ", str))
  //result : [Hello]
 ```
 
-- `Ucwords`
+### `Ucwords`
 
 ```go
 var bar = "HELLO WORLD!"
@@ -168,8 +168,11 @@ fmt.Println(res)
 ### `Strrev`
 
 ```go
-var str = "hello world"
-res := pehape.Strrev(str)
-fmt.Println(res)
-//result : "dlrow olleh"
+var foo = "Hello World!"
+fmt.Println(pehape.Strrev(foo))
+//result : "!dlroW olleH"
+
+var bar = "kasur rusak"
+fmt.Println(pehape.Strrev(bar))
+//result : "kasur rusak"
 ```
