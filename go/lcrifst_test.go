@@ -26,6 +26,10 @@ func TestLcfirst(t *testing.T) {
 				param:  "golang",
 				expect: "golang",
 			},
+			{
+				param:  "G",
+				expect: "g",
+			},
 		}
 
 		for _, test := range tests {

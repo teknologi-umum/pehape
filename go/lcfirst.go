@@ -8,9 +8,9 @@ import "unicode"
 // Return
 // - res => converted string
 func Lcfirst(str string) string {
-	for _, val := range str {
-		char := string(unicode.ToLower(val))
-		return char + str[len(char):]
+	if len(str) == 0 {
+		return ""
 	}
-	return ""
+	char := string(unicode.ToLower(rune(str[0])))
+	return char + str[len(char):]
 }
