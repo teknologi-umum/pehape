@@ -18,14 +18,14 @@ func TestTrim(t *testing.T) {
 	}
 
 	t.Run("It should return an error if the given range is invalid", func(t *testing.T) {
-		tt := &test{
+		test := &test{
 			param: param{
 				str:   "abcdef",
 				chars: []string{"z..a"},
 			},
 		}
 
-		_, err := PHP.Trim(tt.param.str, tt.param.chars...)
+		_, err := PHP.Trim(test.param.str, test.param.chars...)
 
 		if err == nil {
 			t.Errorf("expect error %s, but got nil", PHP.ErrTrimInvalidRange)
@@ -80,14 +80,14 @@ func TestTrim(t *testing.T) {
 			},
 		}
 
-		for _, tt := range tests {
-			res, err := PHP.Trim(tt.param.str, tt.param.chars...)
+		for _, test := range tests {
+			res, err := PHP.Trim(test.param.str, test.param.chars...)
 
 			if err != nil {
 				t.Errorf("expect error nil, but got %s", err)
 			}
-			if res != tt.expect {
-				t.Errorf("expect %s, but got %s", tt.expect, res)
+			if res != test.expect {
+				t.Errorf("expect %s, but got %s", test.expect, res)
 			}
 		}
 	})
