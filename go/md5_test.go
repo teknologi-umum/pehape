@@ -41,7 +41,7 @@ func TestMd5(t *testing.T) {
 		}
 	})
 
-	t.Run("It should calculate string correctly if the given raw is emtpy", func(t *testing.T) {
+	t.Run("It should calculate string correctly if the given raw is empty", func(t *testing.T) {
 		test := &test{
 			param: param{
 				str: "Hello",
