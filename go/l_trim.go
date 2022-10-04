@@ -10,7 +10,7 @@ var (
 	ErrLTrimInvalidRange = errors.New("invalid character range")
 )
 
-// The LTrim() function removes whitespace or other predefined characters from the left side of a string.
+// The Ltrim() function removes whitespace or other predefined characters from the left side of a string.
 // Parameters
 //   - str => specifies the string to check
 //   - chars (optional) => Specifies which characters to remove from the string. if omitted,
@@ -19,7 +19,7 @@ var (
 // Return
 // - res => modified string
 // - err => error if given range is invalid
-func LTrim(str string, chars ...string) (string, error) {
+func Ltrim(str string, chars ...string) (string, error) {
 	if len(chars) == 0 {
 		return strings.TrimLeft(str, " \t\n\x0B\r"), nil
 	}

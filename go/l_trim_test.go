@@ -7,7 +7,7 @@ import (
 	PHP "github.com/teknologi-umum/pehape/go"
 )
 
-func TestLTrim(t *testing.T) {
+func TestLtrim(t *testing.T) {
 	type param struct {
 		str       string
 		charLists []string
@@ -24,7 +24,7 @@ func TestLTrim(t *testing.T) {
 			},
 			expect: "Hello World",
 		}
-		res, err := PHP.LTrim(tt.param.str)
+		res, err := PHP.Ltrim(tt.param.str)
 		if err != nil {
 			t.Errorf("expected error nil, but got %s", err)
 		}
@@ -41,7 +41,7 @@ func TestLTrim(t *testing.T) {
 			},
 			expect: "Hello World",
 		}
-		res, err := PHP.LTrim(tt.param.str, tt.param.charLists...)
+		res, err := PHP.Ltrim(tt.param.str, tt.param.charLists...)
 		if err != nil {
 			t.Errorf("expected error nil, but got %s", err)
 		}
@@ -58,7 +58,7 @@ func TestLTrim(t *testing.T) {
 			},
 			expect: ".abc",
 		}
-		res, err := PHP.LTrim(tt.param.str, tt.param.charLists...)
+		res, err := PHP.Ltrim(tt.param.str, tt.param.charLists...)
 		if err != nil {
 			t.Errorf("expected error nil, but got %s", err)
 		}
@@ -74,7 +74,7 @@ func TestLTrim(t *testing.T) {
 				charLists: []string{"z..a"},
 			},
 		}
-		_, err := PHP.LTrim(tt.param.str, tt.param.charLists...)
+		_, err := PHP.Ltrim(tt.param.str, tt.param.charLists...)
 		if err == nil {
 			t.Errorf("expected error but got nil")
 		}
@@ -91,7 +91,7 @@ func TestLTrim(t *testing.T) {
 			},
 			expect: "WORLD !",
 		}
-		res, err := PHP.LTrim(tt.param.str, tt.param.charLists...)
+		res, err := PHP.Ltrim(tt.param.str, tt.param.charLists...)
 		if err != nil {
 			t.Errorf("expected error nil but got %s", err)
 		}
