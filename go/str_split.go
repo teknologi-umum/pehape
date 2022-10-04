@@ -16,17 +16,16 @@ var (
 // Returns
 // - res => array of splitted string
 // - err => error if length less than 1
-func StrSplit(str string, segLength ...int) (res []string, err error) {
+func StrSplit(str string, segLength ...int) ([]string, error) {
 	var charLen int = 1
 	var strLen int = len(str)
 	if len(segLength) > 0 {
 		if segLength[0] < 1 {
-			err = ErrInvalidSegmentLength
-			return
+			return []string{}, ErrInvalidSegmentLength
 		}
 		charLen = segLength[0]
 	}
-
+	var res []string
 	for i := 1; i <= int(math.Ceil(float64(strLen)/float64(charLen))); i++ {
 		if i*charLen > strLen {
 			res = append(res, str[(charLen*i-charLen):])
@@ -34,5 +33,5 @@ func StrSplit(str string, segLength ...int) (res []string, err error) {
 			res = append(res, str[(charLen*i-charLen):i*charLen])
 		}
 	}
-	return
+	return res, nil
 }
