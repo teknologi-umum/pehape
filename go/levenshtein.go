@@ -1,6 +1,6 @@
 package pehape
 
-// LevenshteinDistance calculate the distance between two string
+// Levenshtein calculates the distance between two strings
 // This algorithm allow insertions, deletions and substitutions to change one string to the second
 // Compatible with non-ASCII characters
 func Levenshtein(str1 string, str2 string, cost ...int) int {
