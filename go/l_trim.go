@@ -19,7 +19,7 @@ var (
 // Return
 // - res => modified string
 // - err => error if given range is invalid
-func LTrim(str string, chars ...string) (res string, err error) {
+func LTrim(str string, chars ...string) (string, error) {
 	if len(chars) == 0 {
 		return strings.TrimLeft(str, " \t\n\x0B\r"), nil
 	}
