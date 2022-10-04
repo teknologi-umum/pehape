@@ -36,8 +36,8 @@ func TestStrpos(t *testing.T) {
 			},
 		}
 
-		for _, tt := range tests {
-			_, err := PHP.Strpos(tt.param.str, tt.param.find, tt.param.offset)
+		for _, test := range tests {
+			_, err := PHP.Strpos(test.param.str, test.param.find, test.param.offset)
 
 			if err == nil {
 				t.Errorf("expect error invalid offset, but got nil")
@@ -49,7 +49,7 @@ func TestStrpos(t *testing.T) {
 	})
 
 	t.Run("It should return correct position of the given string if the offset is empty", func(t *testing.T) {
-		tt := &test{
+		test := &test{
 			param: param{
 				str:  "I love GoLang, I love GoLang too!",
 				find: "Go",
@@ -57,13 +57,13 @@ func TestStrpos(t *testing.T) {
 			expect: 7,
 		}
 
-		res, err := PHP.Strpos(tt.param.str, tt.param.find)
+		res, err := PHP.Strpos(test.param.str, test.param.find)
 
 		if err != nil {
 			t.Errorf("expect error nil, but got %s", err)
 		}
-		if res != tt.expect {
-			t.Errorf("expect %d, but got %d", tt.expect, res)
+		if res != test.expect {
+			t.Errorf("expect %d, but got %d", test.expect, res)
 		}
 	})
 
@@ -119,14 +119,14 @@ func TestStrpos(t *testing.T) {
 			},
 		}
 
-		for _, tt := range tests {
-			res, err := PHP.Strpos(tt.param.str, tt.param.find, tt.param.offset)
+		for _, test := range tests {
+			res, err := PHP.Strpos(test.param.str, test.param.find, test.param.offset)
 
 			if err != nil {
 				t.Errorf("expect error nil, but got %s", err)
 			}
-			if res != tt.expect {
-				t.Errorf("expect %d, but got %d", tt.expect, res)
+			if res != test.expect {
+				t.Errorf("expect %d, but got %d", test.expect, res)
 			}
 		}
 	})
@@ -156,8 +156,8 @@ func TestStrpos(t *testing.T) {
 			},
 		}
 
-		for _, tt := range tests {
-			_, err := PHP.Strpos(tt.param.str, tt.param.find, tt.param.offset)
+		for _, test := range tests {
+			_, err := PHP.Strpos(test.param.str, test.param.find, test.param.offset)
 
 			if err == nil {
 				t.Errorf("expect error, but got nil")
