@@ -40,8 +40,8 @@ func TestStrrpos(t *testing.T) {
 			if err == nil {
 				t.Errorf("expect error, but got nil")
 			}
-			if !errors.Is(err, PHP.ErrSttrposInvalidOffset) {
-				t.Errorf("expect error %s, but got %s", PHP.ErrSttrposInvalidOffset, err)
+			if !errors.Is(err, PHP.ErrStrrposInvalidOffset) {
+				t.Errorf("expect error %s, but got %s", PHP.ErrStrrposInvalidOffset, err)
 			}
 		}
 	})
@@ -119,7 +119,7 @@ func TestStrrpos(t *testing.T) {
 			if err == nil {
 				t.Errorf("expect error, but got nil")
 			}
-			if !errors.Is(err, PHP.ErrSttrposStringNotFound) {
+			if !errors.Is(err, PHP.ErrStrrposStringNotFound) {
 				t.Errorf("expect error nil, but got %s", err)
 			}
 		}

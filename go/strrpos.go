@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	ErrSttrposInvalidOffset  = errors.New("offset is greather than length of string")
-	ErrSttrposStringNotFound = errors.New("string is not found")
+	ErrStrrposInvalidOffset  = errors.New("offset is greather than length of string")
+	ErrStrrposStringNotFound = errors.New("string is not found")
 )
 
 // The Strrpos() function finds the position of the last occurrence of a string inside another string.
@@ -20,7 +20,7 @@ func Strrpos(haystack, needle string, offset ...int) (int, error) {
 	if len(offset) > 0 {
 		o = offset[0]
 		if o >= len(haystack) || (len(haystack)+o < 0) {
-			return 0, ErrSttrposInvalidOffset
+			return 0, ErrStrrposInvalidOffset
 		}
 	}
 	if o < 0 {
@@ -32,7 +32,7 @@ func Strrpos(haystack, needle string, offset ...int) (int, error) {
 				return left, nil
 			}
 		}
-		return 0, ErrSttrposStringNotFound
+		return 0, ErrStrrposStringNotFound
 	}
 
 	// read string from right
@@ -43,5 +43,5 @@ func Strrpos(haystack, needle string, offset ...int) (int, error) {
 			return left, nil
 		}
 	}
-	return 0, ErrSttrposStringNotFound
+	return 0, ErrStrrposStringNotFound
 }
