@@ -2,7 +2,6 @@ package pehape
 
 import (
 	"errors"
-	"regexp"
 )
 
 var (
@@ -34,18 +33,15 @@ func Strchr(str string, search interface{}, beforeSearch ...bool) (string, error
 		}
 	}
 
-	// search using regexp
-	rgx := regexp.MustCompile(searchedCharacter)
-	loc := rgx.FindStringIndex(str)
-	if loc == nil {
-		// if string not found
-		return "", ErrStrchrStringNotFound
+	for i := 0; i <= len(str)-len(searchedCharacter); i++ {
+		if str[i:i+len(searchedCharacter)] == searchedCharacter {
+			if len(beforeSearch) == 0 || !beforeSearch[0] {
+				// if beforeSearch parameters is not defined or if the first index of beforeSearch is FALSE
+				return str[i:], nil
+			}
+			// if beforeSearch parameters is defined and if the first index of beforeSearch is TRUE
+			return str[:i], nil
+		}
 	}
-
-	if len(beforeSearch) == 0 || !beforeSearch[0] {
-		// if beforeSearch parameters is not defined or if the first index of beforeSearch is FALSE
-		return str[loc[0]:], nil
-	}
-	// if beforeSearch parameters is defined and if the first index of beforeSearch is TRUE
-	return str[:loc[0]], nil
+	return "", ErrStrchrStringNotFound
 }

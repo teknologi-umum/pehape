@@ -30,6 +30,14 @@ func TestStrchr(t *testing.T) {
 			},
 			{
 				param: param{
+					str:          "Hel*lo World",
+					search:       "*l",
+					beforeSearch: false,
+				},
+				expect: "*lo World",
+			},
+			{
+				param: param{
 					str:          "Hello World",
 					search:       "Wor",
 					beforeSearch: false,
@@ -120,6 +128,13 @@ func TestStrchr(t *testing.T) {
 					str:          "Hello World",
 					search:       "Wol",
 					beforeSearch: true,
+				},
+			},
+			{
+				param: param{
+					str:          "",
+					search:       "*",
+					beforeSearch: false,
 				},
 			},
 		}
