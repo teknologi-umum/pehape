@@ -34,23 +34,23 @@ func TestMd5(t *testing.T) {
 			},
 		}
 
-		for _, tt := range tests {
-			if res := PHP.Md5(tt.param.str, tt.param.raw); res != tt.expect {
-				t.Errorf("\nParameters:\n\tstr: %s\n\traw:%t\nexpect %s, but got %s", tt.param.str, tt.param.raw, tt.expect, res)
+		for _, test := range tests {
+			if res := PHP.Md5(test.param.str, test.param.raw); res != test.expect {
+				t.Errorf("\nParameters:\n\tstr: %s\n\traw:%t\nexpect %s, but got %s", test.param.str, test.param.raw, test.expect, res)
 			}
 		}
 	})
 
 	t.Run("It should calculate string correctly if the given raw is emtpy", func(t *testing.T) {
-		tt := &test{
+		test := &test{
 			param: param{
 				str: "Hello",
 			},
 			expect: "8b1a9953c4611296a827abf8c47804d7",
 		}
 
-		if res := PHP.Md5(tt.param.str, tt.param.raw); res != tt.expect {
-			t.Errorf("\nParameters:\n\tstr: %s\n\traw:%t\nexpect %s, but got %s", tt.param.str, tt.param.raw, tt.expect, res)
+		if res := PHP.Md5(test.param.str, test.param.raw); res != test.expect {
+			t.Errorf("\nParameters:\n\tstr: %s\n\traw:%t\nexpect %s, but got %s", test.param.str, test.param.raw, test.expect, res)
 		}
 	})
 }
