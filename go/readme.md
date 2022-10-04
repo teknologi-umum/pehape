@@ -22,7 +22,7 @@
  * `Add Slashes`
   - sample string
 ```go
-pehape.Implode(`What does "yolo" mean?`)
+pehape.AddSlashes(`What does "yolo" mean?`)
 //result : What does \"yolo\" mean?
 ```
 
