@@ -30,6 +30,18 @@ func TestLcfirst(t *testing.T) {
 				param:  "G",
 				expect: "g",
 			},
+			{
+				param:  "!@@#4#Golang",
+				expect: "!@@#4#Golang",
+			},
+			{
+				param:  "每一次搜索如何在",
+				expect: "每一次搜索如何在",
+			},
+			{
+				param:  "🙂🤣",
+				expect: "🙂🤣",
+			},
 		}
 
 		for _, test := range tests {

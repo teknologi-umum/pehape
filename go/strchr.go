@@ -23,14 +23,13 @@ var (
 func Strchr(str string, search interface{}, beforeSearch ...bool) (string, error) {
 	var searchedCharacter string
 
-	if val, ok := search.(int); ok {
+	switch val := search.(type) {
+	case int:
 		searchedCharacter = string(rune(val))
-	} else {
-		if val, ok := search.(string); ok {
-			searchedCharacter = val
-		} else {
-			return "", ErrStrchrInvalidParameterType
-		}
+	case string:
+		searchedCharacter = val
+	default:
+		return "", ErrStrchrInvalidParameterType
 	}
 
 	for i := 0; i <= len(str)-len(searchedCharacter); i++ {

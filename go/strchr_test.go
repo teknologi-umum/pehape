@@ -39,14 +39,6 @@ func TestStrchr(t *testing.T) {
 			{
 				param: param{
 					str:          "Hello World",
-					search:       "Wor",
-					beforeSearch: false,
-				},
-				expect: "World",
-			},
-			{
-				param: param{
-					str:          "Hello World",
 					search:       111,
 					beforeSearch: false,
 				},
@@ -67,6 +59,38 @@ func TestStrchr(t *testing.T) {
 					beforeSearch: true,
 				},
 				expect: "Hell",
+			},
+			{
+				param: param{
+					str:          "每一次搜索如何在",
+					search:       "次",
+					beforeSearch: false,
+				},
+				expect: "次搜索如何在",
+			},
+			{
+				param: param{
+					str:          "每一次搜索如何在",
+					search:       "次",
+					beforeSearch: true,
+				},
+				expect: "每一",
+			},
+			{
+				param: param{
+					str:          "👉🙂🤣👌",
+					search:       "🙂",
+					beforeSearch: true,
+				},
+				expect: "👉",
+			},
+			{
+				param: param{
+					str:          "👉🙂🤣👌",
+					search:       "🙂",
+					beforeSearch: false,
+				},
+				expect: "🙂🤣👌",
 			},
 		}
 

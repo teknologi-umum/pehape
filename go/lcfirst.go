@@ -1,6 +1,9 @@
 package pehape
 
-import "unicode"
+import (
+	"unicode"
+	"unicode/utf8"
+)
 
 // The Lcfirst() function converts the first character of a string to lowercase.
 // Parameter
@@ -8,9 +11,12 @@ import "unicode"
 // Return
 // - res => converted string
 func Lcfirst(str string) string {
-	if len(str) == 0 {
-		return ""
+	if str == "" {
+		return str
 	}
-	char := string(unicode.ToLower(rune(str[0])))
-	return char + str[len(char):]
+
+	r, size := utf8.DecodeRuneInString(str)
+	// convert first char to lowercase
+	l := unicode.ToLower(r)
+	return string(l) + str[size:]
 }
