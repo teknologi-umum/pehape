@@ -40,7 +40,7 @@ where
                 // LINQ's SkipLast or Clojure's drop-last.
                 let mut result_vec: Vec<String> =
                     str.split(separator).map(|s| s.to_string()).collect();
-                let len = result_vec.len().saturating_sub(limit.abs() as usize);
+                let len = result_vec.len().saturating_sub(limit.unsigned_abs() as usize);
                 result_vec.truncate(len);
                 Ok(result_vec)
             }
@@ -49,7 +49,7 @@ where
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum ExplodeError {
     EmptySeparator,
 }

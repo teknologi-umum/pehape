@@ -1,6 +1,6 @@
 package pehape
 
-// Levenshtein calculates the distance between two strings
+// Levenshtein calculates the distance between two strings.
 // This algorithm allow insertions, deletions and substitutions to change one string to the second
 // Compatible with non-ASCII characters
 func Levenshtein(str1 string, str2 string, cost ...int) int {
@@ -8,17 +8,17 @@ func Levenshtein(str1 string, str2 string, cost ...int) int {
 	runeStr1 := []rune(str1)
 	runeStr2 := []rune(str2)
 
-	insertion_cost := 1
-	replacement_cost := 1
-	deletion_cost := 1
+	insertionCost := 1
+	replacementCost := 1
+	deletionCost := 1
 	if len(cost) >= 1 {
-		insertion_cost = cost[0]
+		insertionCost = cost[0]
 	}
 	if len(cost) >= 2 {
-		replacement_cost = cost[1]
+		replacementCost = cost[1]
 	}
 	if len(cost) >= 3 {
-		deletion_cost = cost[2]
+		deletionCost = cost[2]
 	}
 
 	// Get and store length of these strings
@@ -44,11 +44,11 @@ func Levenshtein(str1 string, str2 string, cost ...int) int {
 			oldkey := column[y]
 			var i int
 			if runeStr1[y-1] != runeStr2[x-1] {
-				i = replacement_cost
+				i = replacementCost
 			}
 			column[y] = min(
-				min(column[y]+insertion_cost, // insert
-					column[y-1]+deletion_cost), // delete
+				min(column[y]+insertionCost, // insert
+					column[y-1]+deletionCost), // delete
 				lastkey+i) // substitution
 			lastkey = oldkey
 		}
