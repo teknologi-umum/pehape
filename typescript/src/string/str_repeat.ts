@@ -1,13 +1,10 @@
 /**
- * String repeat
+ * str_repeat — Repeat a string
  * @param {string} str
- * @param {unknown} multiplication
- * @returns {string}
+ * @param {number} times
+ * @returns {string} Returns string repeated times times.
  */
-export const str_repeat = (str: string, multiplication: unknown): string => {
-  if (typeof multiplication === "number") {
-    return str.repeat(multiplication);
-  } else {
-    throw new Error("Argument is must be number");
-  }
+export const str_repeat = (str: string, times: number): string => {
+  if (typeof times !== "number") throw new Error("Argument must be a number");
+  return str.repeat(times);
 };
