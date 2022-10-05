@@ -1,7 +1,10 @@
-export const str_repeat = (
-  str: string,
-  multiplication: number | unknown
-): string => {
+/**
+ * String repeat
+ * @param {string} str
+ * @param {unknown} multiplication
+ * @returns {string}
+ */
+export const str_repeat = (str: string, multiplication: unknown): string => {
   if (typeof multiplication === "number") {
     return str.repeat(multiplication);
   } else {
