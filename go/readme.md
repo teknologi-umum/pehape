@@ -19,6 +19,12 @@
  fmt.Println(pehape.Levenshtein(str1, str2, insertionCost, replacementCost, deletionCost))
  //result : 5
  ```
+ * `Add Slashes`
+  - sample string
+```go
+pehape.AddSlashes(`What does "yolo" mean?`)
+//result : What does \"yolo\" mean?
+```
 
  * `Implode`
   - sample string
