@@ -1,0 +1,1 @@
+export const addslashes = (text: string): string => text.replace(/'|"/g, "\\'");
