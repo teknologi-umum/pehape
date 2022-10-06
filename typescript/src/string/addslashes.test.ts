@@ -3,12 +3,12 @@ import { addslashes } from "./addslashes";
 const textSingeQuote = "My name is O' Reilly";
 const textDoubleQuote = "My name is O\" Reilly";
 
-describe("Replace slashes", () => {
-    it("should replace single quote text to backslash", () => {
+describe("Add slashes", () => {
+    it("should add backslash before single quote", () => {
         expect(addslashes(textSingeQuote)).toEqual("My name is O\\' Reilly");
     });
 
-    it("should replace double quote text to backslash", () => {
-        expect(addslashes(textDoubleQuote)).toEqual("My name is O\\' Reilly");
+    it("should add backslash before double quote", () => {
+        expect(addslashes(textDoubleQuote)).toEqual("My name is O\" Reilly");
     });
 });
