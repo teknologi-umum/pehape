@@ -33,6 +33,23 @@ func TestStrReplace(t *testing.T) {
 			},
 			{
 				param: param{
+					find: []interface{}{
+						[]string{"world", "have"},
+						"day",
+					},
+					replace: []string{"we", "eee"},
+					str:     "Hello world, have a nice day!",
+				},
+			},
+			{
+				param: param{
+					find:    []string{"day"},
+					replace: []string{"we", "eee"},
+					str:     []int{1, 2},
+				},
+			},
+			{
+				param: param{
 					find: []string{
 						"world", "have",
 					},
@@ -85,6 +102,13 @@ func TestStrReplace(t *testing.T) {
 					find:    false,
 					replace: "people",
 					str:     []int{1},
+				},
+			},
+			{
+				param: param{
+					find:    []bool{false, true},
+					replace: "people",
+					str:     []string{"we", "he"},
 				},
 			},
 			{
@@ -152,6 +176,15 @@ func TestStrReplace(t *testing.T) {
 			},
 			{
 				param: param{
+					find:    []string{"world", ""},
+					replace: "cute",
+					str:     "Hello world! have a nice day",
+				},
+				expect:      "Hello cute! have a nice day",
+				expectCount: 1,
+			},
+			{
+				param: param{
 					find:    "world",
 					replace: "baby",
 					str:     "Hello world! have a nice day 123",
@@ -204,6 +237,15 @@ func TestStrReplace(t *testing.T) {
 				expect:      []string{"eee", "eee"},
 				expectCount: 7,
 			},
+			{
+				param: param{
+					find:    "",
+					replace: "e",
+					str:     []string{"wee", "eee"},
+				},
+				expect:      []string{"wee", "eee"},
+				expectCount: 0,
+			},
 			// if string not found
 			{
 				param: param{
@@ -222,6 +264,33 @@ func TestStrReplace(t *testing.T) {
 				},
 				expect:      "Hello world! have a nice day 123",
 				expectCount: 0,
+			},
+			{
+				param: param{
+					find:    []string{"a", "e"},
+					replace: []string{"b", "d"},
+					str:     []string{"abcde", "edcba"},
+				},
+				expect:      []string{"bbcdd", "ddcbb"},
+				expectCount: 4,
+			},
+			{
+				param: param{
+					find:    []string{"a", ""},
+					replace: []string{"b", "d"},
+					str:     []string{"abcde", "edcba"},
+				},
+				expect:      []string{"bbcde", "edcbb"},
+				expectCount: 2,
+			},
+			{
+				param: param{
+					find:    []string{"a", "e"},
+					replace: []string{"b"},
+					str:     []string{"abcde", "edcba"},
+				},
+				expect:      []string{"bbcd", "dcbb"},
+				expectCount: 4,
 			},
 		}
 
