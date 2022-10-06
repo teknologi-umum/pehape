@@ -4,14 +4,14 @@
  * @returns {string}
  */
 export const addslashes = (text: string): string => {
-    const replacedCondition: string[] = ["'", "\"\""];
+    const appendCondition: string[] = ["'", "\"\""];
 
     const temp: string[] = [];
 
     for (let i = 0; i < text.length; i++) {
-        const replaced: boolean = replacedCondition.some((element) => text[i].includes(element));
+        const needToAppend: boolean = appendCondition.some((element) => text[i].includes(element));
 
-        if (replaced) {
+        if (needToAppend) {
             temp.push("\\");
         }
 
