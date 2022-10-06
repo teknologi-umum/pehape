@@ -4,31 +4,38 @@
 
 ## Usage?
 
-- `Levenshtein`
-
+### `Levenshtein`
+ 
+ ```go
+ str1 := "kitten"
+ str2 := "sitting"
+ fmt.Println(pehape.Levenshtein(str1, str2))
+ //result : 3
+ ```
+ - with custom cost
+ ```go
+ str1 := "kitten"
+ str2 := "sitting"
+ insertionCost := 1
+ replacementCost := 2
+ deletionCost := 3
+ fmt.Println(pehape.Levenshtein(str1, str2, insertionCost, replacementCost, deletionCost))
+ //result : 5
+ ```
+ 
+### `Add Slashes`
+ 
+- sample string
+  
 ```go
-str1 := "kitten"
-str2 := "sitting"
-fmt.Println(pehape.Levenshtein(str1, str2))
-//result : 3
+pehape.AddSlashes(`What does "yolo" mean?`)
+//result : What does \"yolo\" mean?
 ```
 
-with custom cost
+### `Implode`
 
-```go
-str1 := "kitten"
-str2 := "sitting"
-insertionCost := 1
-replacementCost := 2
-deletionCost := 3
-fmt.Println(pehape.Levenshtein(str1, str2, insertionCost, replacementCost, deletionCost))
-//result : 5
-```
-
-- `Implode`
-
-* sample string
-
+- sample string
+  
 ```go
 var array = []string{"Hello", "world"}
 fmt.Println(pehape.Implode(array, " "))
