@@ -35,11 +35,7 @@ func Trim(str string, chars ...string) (string, error) {
 	rangedChar := r.FindAll([]byte(reversedString), -1)
 	// generates correct characters between ranges
 	for _, val := range rangedChar {
-		if len(val) < 4 {
-			return "", ErrTrimInvalidRange
-		}
-
-		if val[3] > val[0] {
+		if len(val) < 4 || val[3] > val[0] {
 			return "", ErrTrimInvalidRange
 		}
 
