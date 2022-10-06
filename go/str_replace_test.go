@@ -134,6 +134,15 @@ func TestStrReplace(t *testing.T) {
 			},
 			{
 				param: param{
+					find:    []string{"world", "nice", "day"},
+					replace: []string{"people", "bad"},
+					str:     "Hello world! have a nice day",
+				},
+				expect:      "Hello people! have a bad ",
+				expectCount: 3,
+			},
+			{
+				param: param{
 					find:    []string{"world", "nice"},
 					replace: "cute",
 					str:     "Hello world! have a nice day",
@@ -153,11 +162,47 @@ func TestStrReplace(t *testing.T) {
 			{
 				param: param{
 					find:    "e",
-					replace: "aa",
-					str:     "hehehe",
+					replace: "a",
+					str:     []string{"wee", "he", "waa"},
 				},
-				expect:      "haahaahaa",
+				expect:      []string{"waa", "ha", "waa"},
 				expectCount: 3,
+			},
+			{
+				param: param{
+					find:    []string{"w", "e"},
+					replace: "e",
+					str:     "wee",
+				},
+				expect:      "eee",
+				expectCount: 4,
+			},
+			{
+				param: param{
+					find:    "",
+					replace: "a",
+					str:     "abc",
+				},
+				expect:      "abc",
+				expectCount: 0,
+			},
+			{
+				param: param{
+					find:    []string{"e", "w", "e"},
+					replace: "e",
+					str:     []string{"wee", "eee"},
+				},
+				expect:      []string{"eee", "eee"},
+				expectCount: 12,
+			},
+			{
+				param: param{
+					find:    []string{"", "w", "e"},
+					replace: "e",
+					str:     []string{"wee", "eee"},
+				},
+				expect:      []string{"eee", "eee"},
+				expectCount: 7,
 			},
 			// if string not found
 			{
@@ -178,29 +223,12 @@ func TestStrReplace(t *testing.T) {
 				expect:      "Hello world! have a nice day 123",
 				expectCount: 0,
 			},
-			{
-				param: param{
-					find:    "e",
-					replace: "a",
-					str:     []string{"wee", "he", "waa"},
-				},
-				expect:      []string{"waa", "ha", "waa"},
-				expectCount: 3,
-			},
-			{
-				param: param{
-					find:    []string{"w", "e"},
-					replace: "e",
-					str:     "wee",
-				},
-				expect:      "eee",
-				expectCount: 4,
-			},
 		}
 
 		for _, test := range tests {
 			res, count, err := PHP.StrReplace(test.param.find, test.param.replace, test.param.str)
-
+			// t.Errorf("\n\tfind: %v\n\treplace: %v\n\tstr: %v\nexpect error nil, but got %s\n",
+			// 	test.param.find, test.param.replace, test.param.str, err)
 			if err != nil {
 				t.Errorf("\n\tfind: %v\n\treplace: %v\n\tstr: %v\nexpect error nil, but got %s\n",
 					test.param.find, test.param.replace, test.param.str, err)

@@ -43,6 +43,10 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 
 			switch vFind.Kind() {
 			case reflect.String: // ('replace' == string) && ('str' == string) && ('find' == string)
+				if find.(string) == "" {
+					return strCopy, count, nil
+				}
+
 				if c := strings.Count(strCopy, find.(string)); c > 0 {
 					count += c
 					strCopy = strings.ReplaceAll(strCopy, find.(string), charsReplace)
@@ -57,12 +61,14 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 					return nil, 0, ErrStrReplaceInvalidParameter
 				}
 
-				if len(charsFind) > 0 && len(charsFind[0]) != 0 {
-					for i := 0; i < len(charsFind); i++ {
-						if c := strings.Count(strCopy, charsFind[i]); c > 0 {
-							strCopy = strings.ReplaceAll(strCopy, charsFind[i], charsReplace)
-							count += c
-						}
+				for i := 0; i < len(charsFind); i++ {
+					if charsFind[i] == "" {
+						continue
+					}
+
+					if c := strings.Count(strCopy, charsFind[i]); c > 0 {
+						strCopy = strings.ReplaceAll(strCopy, charsFind[i], charsReplace)
+						count += c
 					}
 				}
 				return strCopy, count, nil
@@ -81,7 +87,7 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 
 			switch vFind.Kind() {
 			case reflect.String: // ('replace' == string) && ('str' == slice) && ('find' = string)
-				if len(find.(string)) == 0 {
+				if find.(string) == "" {
 					return charsStr, 0, nil
 				}
 
@@ -108,9 +114,10 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 					if charsFind[i] == "" {
 						continue
 					}
+
 					for j := 0; j < len(charsStr); j++ {
 						if c := strings.Count(charsStr[j], charsFind[i]); c > 0 {
-							charsStr[i] = strings.ReplaceAll(charsStr[j], charsFind[i], replace.(string))
+							charsStr[j] = strings.ReplaceAll(charsStr[j], charsFind[i], replace.(string))
 							count += c
 						}
 					}
@@ -154,6 +161,7 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 					if charsFind[i] == "" {
 						continue
 					}
+
 					for j := 0; j < len(charsStr); j++ {
 						if c := strings.Count(charsStr[j], charsFind[i]); c > 0 {
 							// if 'charsReplace' out of index then replace with empty string
@@ -175,6 +183,7 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 					if charsFind[i] == "" {
 						continue
 					}
+
 					if c := strings.Count(strCopy, charsFind[i]); c > 0 {
 						if i < len(charsReplace) {
 							strCopy = strings.ReplaceAll(strCopy, charsFind[i], charsReplace[i])
