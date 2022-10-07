@@ -296,8 +296,7 @@ func TestStrReplace(t *testing.T) {
 
 		for _, test := range tests {
 			res, count, err := PHP.StrReplace(test.param.find, test.param.replace, test.param.str)
-			// t.Errorf("\n\tfind: %v\n\treplace: %v\n\tstr: %v\nexpect error nil, but got %s\n",
-			// 	test.param.find, test.param.replace, test.param.str, err)
+
 			if err != nil {
 				t.Errorf("\n\tfind: %v\n\treplace: %v\n\tstr: %v\nexpect error nil, but got %s\n",
 					test.param.find, test.param.replace, test.param.str, err)
