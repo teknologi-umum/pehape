@@ -139,7 +139,7 @@ func StrReplace(find, replace, str interface{}) (interface{}, int, error) {
 
 			var charsFind []string
 
-			// only slice of string are allowed for 'find'
+			// only slice of string are allowed for 'find'.
 			charsFind, ok := find.([]string)
 			if !ok {
 				return nil, 0, ErrStrReplaceInvalidParameter
