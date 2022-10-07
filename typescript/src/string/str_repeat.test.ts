@@ -10,7 +10,7 @@ describe("string repeat", () => {
   });
   it("should throw when invalid parameter is passed", () => {
     expect(() => {
-      // @ts-expect-error because second parameter a string and throw error
+      // @ts-expect-error because the second parameter should be a number but we pass a string for testing purpose
       str_repeat(str, "a");
     }).toThrow("Argument must be a number");
   });
