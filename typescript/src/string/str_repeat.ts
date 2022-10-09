@@ -6,5 +6,6 @@
  */
 export const str_repeat = (str: string, times: number): string => {
   if (typeof times !== "number") throw new Error("Argument must be a number");
+  if (times < 0) throw new Error("Invalid count value");
   return str.repeat(times);
 };
