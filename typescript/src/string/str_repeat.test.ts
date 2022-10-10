@@ -8,6 +8,9 @@ describe("string repeat", () => {
   it("should be able to ignore empty string", () => {
     expect(str_repeat(str, 0)).toEqual("");
   });
+  it("the second parameter negative one and should be able to ignore empty string", () => {
+    expect(() => str_repeat(str, -1)).toThrow("Invalid count value");
+  });
   it("should throw when invalid parameter is passed", () => {
     expect(() => {
       // @ts-expect-error because the second parameter should be a number but we pass a string for testing purpose
