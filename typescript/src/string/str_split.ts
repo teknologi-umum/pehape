@@ -1,12 +1,12 @@
 /**
  * str_split — Convert a string to an array
- * @param str - The string to be convert.
+ * @param str - The input string.
  * @param len - Maximum length of the chunk.
  * @returns If the optional length parameter is specified, the returned array will be broken down into chunks with each being length in length, except the final chunk which may be shorter if the string does not divide evenly. The default length is 1, meaning every chunk will be one byte in size.
  */
-export const str_split = (str: string, len?: number): string[] | false => {
-    if (typeof str === "undefined" || typeof str !== "string") return false;
-    if (typeof len !== "undefined" && typeof len === "number") {
+export const str_split = (str: string, len = 1): string[] | false => {
+    if (typeof str !== "string") return false;
+    if (typeof len === "number") {
         if (len < 0) return false;
 
         const arr: string[] = [];
@@ -26,6 +26,6 @@ export const str_split = (str: string, len?: number): string[] | false => {
         return arr;
     }
 
-    return str.split("");
+    return false;
 };
   
