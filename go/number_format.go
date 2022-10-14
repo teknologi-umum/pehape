@@ -16,13 +16,13 @@ var (
 )
 
 var (
-	p                *message.Printer
-	onceNumberFormat sync.Once
+	messagePrinterNumberFormat *message.Printer
+	onceNumberFormat           sync.Once
 )
 
 func init() {
 	onceNumberFormat.Do(func() {
-		p = message.NewPrinter(language.English)
+		messagePrinterNumberFormat = message.NewPrinter(language.English)
 	})
 }
 
@@ -40,15 +40,16 @@ func NumberFormat(num float64, options ...string) (string, error) {
 	strFormat := "%.0"
 
 	if len(options) > 0 {
-		_, err := strconv.Atoi(getIntegerFromString(options[0]))
+		fixInteger := getIntegerFromString(options[0])
+		_, err := strconv.Atoi(fixInteger)
 		if err != nil {
 			return "", errParam2MustInt
 		}
 
-		strFormat = strFormat[:len(strFormat)-1] + options[0]
+		strFormat = strFormat[:len(strFormat)-1] + fixInteger
 	}
 
-	result := p.Sprintf(strFormat+"f", num)
+	result := messagePrinterNumberFormat.Sprintf(strFormat+"f", num)
 
 	if len(options) >= 2 {
 		result = strings.ReplaceAll(result, ".", options[1])
