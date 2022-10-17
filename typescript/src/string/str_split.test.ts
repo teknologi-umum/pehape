@@ -18,6 +18,10 @@ describe("string split", () => {
   it("should be able to return false", () => {
     expect(str_split(str, 0)).toEqual(false);
     expect(str_split(str, -1)).toEqual(false);
+    // @ts-expect-error
+    expect(str_split(str, "nol")).toEqual(false);
+    // @ts-expect-error
+    expect(str_split(1234567890, 3)).toEqual(false);
   });
 
   it("should be able to return the entire string as the only element of the array", () => {
