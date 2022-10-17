@@ -16,6 +16,7 @@ describe("string split", () => {
   });
 
   it("should be able to return false", () => {
+    expect(str_split(str, 0)).toEqual(false);
     expect(str_split(str, -1)).toEqual(false);
   });
 
