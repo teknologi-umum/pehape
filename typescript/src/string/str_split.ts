@@ -6,26 +6,23 @@
  */
 export const str_split = (str: string, len = 1): string[] | false => {
     if (typeof str !== "string") return false;
-    if (typeof len === "number") {
-        if (len < 0) return false;
+    if (typeof len !== "number") return false;
+    if (len <= 0) return false;
 
-        const arr: string[] = [];
-        let result = "";
-        let counter = 0;
-        for (let i=0; i<str.length; i++) {
-            result = result + str[i];
-            counter++;
-            
-            if (counter === len || i === str.length - 1) {
-                arr.push(result);
-                result = "";
-                counter = 0;
-            }
+    const arr: string[] = [];
+    let result = "";
+    let counter = 0;
+    for (let i=0; i<str.length; i++) {
+        result = result + str[i];
+        counter++;
+        
+        if (counter === len || i === str.length - 1) {
+            arr.push(result);
+            result = "";
+            counter = 0;
         }
-
-        return arr;
     }
 
-    return false;
+    return arr;
 };
   
