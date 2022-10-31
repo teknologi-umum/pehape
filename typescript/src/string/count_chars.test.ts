@@ -9,9 +9,6 @@ const charByteObject: { [key: string]: number; } = {
 describe("count_chars", () => {
   it("should return all character counts as array on mode 0", () => {
     const result = count_chars(testString, 0);
-    expect(result).not.toStrictEqual(false);
-    if (result === false) return;
-
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(255);
     if (!Array.isArray(result)) return;
@@ -27,9 +24,6 @@ describe("count_chars", () => {
 
   it("should return only character counts that are greater than 0 on mode 1", () => {
     const result = count_chars(testString, 1);
-    expect(result).not.toStrictEqual(false);
-    if (result === false) return;
-
     Object.keys(result).forEach((key: string) => {
       const charFromIndex = String.fromCharCode(Number(key));
       expect(result[Number(key)]).toStrictEqual(charByteObject[charFromIndex]);
@@ -38,9 +32,6 @@ describe("count_chars", () => {
 
   it("should return only character counts that are equal to 0 on mode 2", () => {
     const result = count_chars(testString, 2);
-    expect(result).not.toStrictEqual(false);
-    if (result === false) return;
-
     for (let i = 0; i < 255; i++) {
       const charFromIndex = String.fromCharCode(i);
       if (charByteObject[charFromIndex]) {
@@ -57,9 +48,6 @@ describe("count_chars", () => {
 
   it("should return a string containing all unused characters on mode 4", () => {
     const result = count_chars(testString, 4);
-    expect(result).not.toStrictEqual(false);
-    if (result === false) return;
-
     testString.split("").forEach(char => {
       expect(result).not.toMatch(char);
     });
@@ -67,9 +55,6 @@ describe("count_chars", () => {
 
   it("should return empty array when given empty string on mode 0", () => {
     const result = count_chars("", 0);
-    expect(result).not.toStrictEqual(false);
-    if (result === false) return;
-
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(255);
     if (!Array.isArray(result)) return;
@@ -94,8 +79,9 @@ describe("count_chars", () => {
     expect(count_chars("", 4)).toHaveLength(255);
   });
 
-  it("should return false on invalid mode values", () => {
-    expect(count_chars("", 5)).toStrictEqual(false);
-    expect(count_chars("", -1)).toStrictEqual(false);
+  it("should throw error on invalid mode values", () => {
+    expect(() => count_chars(testString, 5)).toThrow(RangeError);
+    expect(() => count_chars(testString, -1)).toThrow(RangeError);
+    expect(() => count_chars(testString, 0.75)).toThrow(RangeError);
   });
 });

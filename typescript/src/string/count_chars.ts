@@ -9,7 +9,7 @@
  * 3 - a string containing all unique characters is returned.
  * 4 - a string containing all not used characters is returned.
  */
-export const count_chars = (string: string, mode: number): number[]|{[key: number]: number}|string|false => {
+export const count_chars = (string: string, mode: number): number[]|{[key: number]: number}|string => {
   switch (mode) {
     case 0: {
       return string.split("").reduce((prevArray: number[], char: string) => {
@@ -46,7 +46,7 @@ export const count_chars = (string: string, mode: number): number[]|{[key: numbe
       }).join("");
     }
     default: {
-      return false;
+      throw new RangeError("Argument #2 (mode) must be an integer between 1 and 4 (inclusive)");
     }
   } 
 };
