@@ -40,4 +40,13 @@ describe("ltrim with character range", () => {
     expect(ltrim("\x09Hello, World!\x0A", "\x00..\x1F")).toStrictEqual("Hello, World!\x0A");
     expect(ltrim("0293174856Hello, World!", "0..9")).toStrictEqual("Hello, World!");
   });
+
+  it("should also work with reverse range", () => {
+    expect(ltrim("aiaxmioxjHello, World!", "z..a")).toStrictEqual("Hello, World!");    
+  });
+
+  it("should also work with multiple ranges", () => {
+    expect(ltrim("38Hello, World!", "1..57..9")).toStrictEqual("Hello, World!");
+    expect(ltrim("6Hello, World!", "1..57..9")).toStrictEqual("6Hello, World!");
+  });
 });

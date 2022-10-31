@@ -13,16 +13,25 @@
 */
 export const ltrim = (str: string, characters = " \n\r\t\v\x00"): string => {
   let charactersEscaped = "";
-  if (!characters.includes("..")) {
+  const ranges = characters.match(/.\.\../g);
+  if (!ranges) {
     charactersEscaped = characters;
   } else {
-    const [start, end] = characters.split("..");
-    for (let i = start.charCodeAt(0); i <= end.charCodeAt(0); i++) {
-      charactersEscaped += String.fromCharCode(i);
-    }
+    ranges.forEach(range => {
+      const [start, end] = range.split("..");
+      let startCode = start.charCodeAt(0);
+      let endCode = end.charCodeAt(0);
+  
+      if (startCode > endCode) {
+        [startCode, endCode] = [endCode, startCode];
+      }
+      for (let i = startCode; i <= endCode; i++) {
+        charactersEscaped += String.fromCharCode(i);
+      }
+    });
   }
 
-  charactersEscaped = charactersEscaped.replace(/([\\^$.|?*+()[\]{}])/g, "\\$1");
+  charactersEscaped = charactersEscaped.replace("\\", "\\\\").replace("]", "\\]");
   const charactersRegex = new RegExp(`^[${charactersEscaped}]+`);
   return str.replace(charactersRegex, "");
 };
