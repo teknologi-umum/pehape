@@ -34,3 +34,10 @@ describe("ltrim with different characters", () => {
     expect(ltrim("[$$$*]Hello, World!", "*$[]")).toStrictEqual("Hello, World!");
   });
 });
+
+describe("ltrim with character range", () => {
+  it("should return trimmed string for ranged characters", () => {
+    expect(ltrim("\x09Hello, World!\x0A", "\x00..\x1F")).toStrictEqual("Hello, World!\x0A");
+    expect(ltrim("0293174856Hello, World!", "0..9")).toStrictEqual("Hello, World!");
+  });
+});

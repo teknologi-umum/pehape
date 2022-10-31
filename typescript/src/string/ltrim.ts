@@ -12,7 +12,17 @@
  *   "\v" (ASCII 11 (0x0B)), a vertical tab.
 */
 export const ltrim = (str: string, characters = " \n\r\t\v\x00"): string => {
-  const charactersEscaped = characters.replace(/([\\^$.|?*+()[\]{}])/g, "\\$1");
+  let charactersEscaped = "";
+  if (!characters.includes("..")) {
+    charactersEscaped = characters;
+  } else {
+    const [start, end] = characters.split("..");
+    for (let i = start.charCodeAt(0); i <= end.charCodeAt(0); i++) {
+      charactersEscaped += String.fromCharCode(i);
+    }
+  }
+
+  charactersEscaped = charactersEscaped.replace(/([\\^$.|?*+()[\]{}])/g, "\\$1");
   const charactersRegex = new RegExp(`^[${charactersEscaped}]+`);
   return str.replace(charactersRegex, "");
 };
