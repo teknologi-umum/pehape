@@ -203,3 +203,12 @@ var symbol = pehape.Chr(240) + pehape.Chr(159) + pehape.Chr(144) + pehape.Chr(15
 fmt.Println(symbol)
 //result : "🐘"
 ```
+
+### `StrShuffle`
+
+```go
+shuffle := StrShuffle("abcdef")
+
+//This will print something like: "bfdaec"
+fmt.Println(shuffle)
+```
