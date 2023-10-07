@@ -29,6 +29,7 @@ var (
 // Optional params:
 // - pad_string => string or int or float64
 // - pad_type => STR_PAD_LEFT, STR_PAD_RIGHT, STR_PAD_BOTH
+// php doc: https://www.php.net/manual/en/function.str-pad.php
 func StrPad(s string, length int, args ...any) (string, error) {
 	// first check args length
 	if len(args) > 2 {
