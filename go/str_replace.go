@@ -15,7 +15,6 @@ var (
 // 1. it not allowed if parameters has nested slice.
 // 2. parameters can only be string or []string, so if you must convert it first into string like PHP does.
 // 3. you can get a count of the number of replacements in return value.
-
 // Parameters
 // - find => value to find.
 // - replace => value to replace the value in 'find'.
