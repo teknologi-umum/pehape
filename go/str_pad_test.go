@@ -2,8 +2,6 @@ package pehape
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestStrPad(t *testing.T) {
@@ -277,16 +275,53 @@ func TestStrPad(t *testing.T) {
 			length:         19,
 			args:           []any{func() {}, 10},
 		},
+		{
+			name:           `should success pad bool true`,
+			expectedString: "1000111111111111111",
+			expectedError:  nil,
+			s:              "1000",
+			length:         19,
+			args:           []any{true},
+		},
+		{
+			name:           `should error pad bool false`,
+			expectedString: "",
+			expectedError:  ErrPadInvalid,
+			s:              "1000",
+			length:         19,
+			args:           []any{false},
+		},
+		{
+			name:           `should success pad type string 1`,
+			expectedString: "1111111111111111000",
+			expectedError:  nil,
+			s:              "1000",
+			length:         19,
+			args:           []any{"1", "1"},
+		},
+		{
+			name:           `should error pad type string 1.5`,
+			expectedString: "",
+			expectedError:  ErrPadTypeInvalid,
+			s:              "1000",
+			length:         19,
+			args:           []any{"1", "1.5"},
+		},
 	}
 	for _, tt := range tests {
 		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			actual, err := StrPad(tt.s, tt.length, tt.args...)
-			assert.Equal(t, tt.expectedString, actual)
-			assert.Equal(t, tt.expectedError, err)
+			if actual != tt.expectedString {
+				t.Errorf("(%v): expected (%v), actual (%v)", tt.name, tt.expectedString, actual)
+			}
 
-			if tt.length > len(tt.s) && tt.expectedError == nil {
-				assert.Equal(t, tt.length, len(actual))
+			if err != tt.expectedError {
+				t.Errorf("(%v): expected (%v), actual (%v)", tt.name, tt.expectedError, err)
+			}
+
+			if tt.length > len(tt.s) && tt.expectedError != err {
+				t.Errorf("(%v): expected (%v), actual (%v)", tt.name, tt.expectedError, err)
 			}
 		})
 	}

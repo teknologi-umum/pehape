@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"strconv"
 	"strings"
 )
 
@@ -43,9 +44,15 @@ func StrPad(s string, length int, args ...any) (string, error) {
 
 	// set pad
 	if len(args) > 0 {
-		switch args[0].(type) {
+		switch v := args[0].(type) {
 		case string, float64, int:
-			padString = fmt.Sprintf("%v", args[0])
+			padString = fmt.Sprintf("%v", v)
+		case bool:
+			if v {
+				padString = "1"
+			} else {
+				return "", ErrPadInvalid
+			}
 		default:
 			return "", ErrPadInvalid
 		}
@@ -59,11 +66,18 @@ func StrPad(s string, length int, args ...any) (string, error) {
 	// set pad type
 	var padType int
 	if len(args) == 2 {
-		switch args[1].(type) {
+		switch v := args[1].(type) {
 		case int:
-			padType = args[1].(int)
+			padType = v
 		case float64:
-			padType = int(args[1].(float64))
+			padType = int(v)
+		case string:
+			// if its string float64, it will error (DEPRECATED)
+			i, err := strconv.Atoi(v)
+			if err != nil {
+				return "", ErrPadTypeInvalid
+			}
+			padType = i
 		default:
 			return "", ErrPadTypeInvalid
 		}
