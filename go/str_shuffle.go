@@ -9,6 +9,7 @@ import (
 var randStrShuffle *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 // StrShuffle Randomly shuffles a string
+// php doc: https://www.php.net/manual/en/function.str-shuffle
 func StrShuffle(str string) string {
 	if len(str) <= 1 {
 		return str
