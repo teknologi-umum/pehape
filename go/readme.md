@@ -203,3 +203,10 @@ var symbol = pehape.Chr(240) + pehape.Chr(159) + pehape.Chr(144) + pehape.Chr(15
 fmt.Println(symbol)
 //result : "🐘"
 ```
+
+### `Strlen`
+```go
+var length = pehape.Strlen("🤗🥰")
+fmt.Println(length)
+// result: 8
+```
