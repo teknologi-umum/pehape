@@ -223,3 +223,12 @@ shuffle := StrShuffle("abcdef")
 //This will print something like: "bfdaec"
 fmt.Println(shuffle)
 ```
+
+### `ChunkSplit`
+
+```go
+chunk, err := ChunkSplit("hello", 2, "oke")
+
+//This will print: "<nil> heokellokeooke"
+fmt.Println(err, chunk)
+```
