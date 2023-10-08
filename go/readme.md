@@ -214,3 +214,12 @@ fmt.Println(StrPad(input, 10, "_", STR_PAD_BOTH));  // produces "__Alien___"
 fmt.Println(StrPad(input,  6, "___"));              // produces "Alien_"
 fmt.Println(StrPad(input,  3, "*"));                // produces "Alien"
 ```
+
+### `StrShuffle`
+
+```go
+shuffle := StrShuffle("abcdef")
+
+//This will print something like: "bfdaec"
+fmt.Println(shuffle)
+```
