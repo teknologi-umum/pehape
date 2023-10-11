@@ -204,8 +204,13 @@ fmt.Println(symbol)
 //result : "🐘"
 ```
 
-### `StrPad`
+### `Strlen`
+```go
+var length = pehape.Strlen("🤗🥰")
+fmt.Println(length)
+// result: 8
 
+### `StrPad`
 ```go
 input := "Alien";
 fmt.Println(StrPad(input, 10));                     // produces "Alien     "
@@ -216,7 +221,6 @@ fmt.Println(StrPad(input,  3, "*"));                // produces "Alien"
 ```
 
 ### `StrShuffle`
-
 ```go
 shuffle := StrShuffle("abcdef")
 
