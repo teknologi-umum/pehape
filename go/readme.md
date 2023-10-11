@@ -203,3 +203,15 @@ var symbol = pehape.Chr(240) + pehape.Chr(159) + pehape.Chr(144) + pehape.Chr(15
 fmt.Println(symbol)
 //result : "🐘"
 ```
+
+### `StrStartsWith`
+
+```go
+var result = pehape.StrStartsWith("Hello World", "Hell")
+fmt.Println(result)
+//result : true
+
+var result2 = pehape.StrStartsWith("Hello World", "World")
+fmt.Println(result2)
+//result : false
+```
