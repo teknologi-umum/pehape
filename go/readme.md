@@ -223,3 +223,15 @@ shuffle := StrShuffle("abcdef")
 //This will print something like: "bfdaec"
 fmt.Println(shuffle)
 ```
+
+### `StrContains`
+
+```go
+var isContains = pehape.StrContains("Hello World!", "World")
+fmt.Println(isContains)
+//result : true
+
+var isContains2 = pehape.StrContains("Hello World!", "world")
+fmt.Println(isContains2)
+//restult: false
+```
