@@ -223,3 +223,11 @@ shuffle := StrShuffle("abcdef")
 //This will print something like: "bfdaec"
 fmt.Println(shuffle)
 ```
+
+### `Ucfirst`
+
+```go
+var converted = pehape.Ucfirst("hello world")
+fmt.Println(converted)
+//result : "Hello world"
+```
