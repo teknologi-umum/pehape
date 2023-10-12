@@ -204,11 +204,27 @@ fmt.Println(symbol)
 //result : "🐘"
 ```
 
+
+### `StrStartsWith`
+
+```go
+var result = pehape.StrStartsWith("Hello World", "Hell")
+fmt.Println(result)
+//result : true
+
+var result2 = pehape.StrStartsWith("Hello World", "World")
+fmt.Println(result2)
+//result : false
+```
+
+
 ### `Strlen`
 ```go
 var length = pehape.Strlen("🤗🥰")
 fmt.Println(length)
 // result: 8
+```
+
 
 ### `StrPad`
 ```go
