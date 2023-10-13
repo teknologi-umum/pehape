@@ -244,6 +244,20 @@ shuffle := StrShuffle("abcdef")
 fmt.Println(shuffle)
 ```
 
+
+### `StrContains`
+
+```go
+var isContains = pehape.StrContains("Hello World!", "World")
+fmt.Println(isContains)
+//result : true
+
+var isContains2 = pehape.StrContains("Hello World!", "world")
+fmt.Println(isContains2)
+//restult: false
+```
+
+
 ### `ChunkSplit`
 
 ```go
