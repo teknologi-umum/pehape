@@ -245,6 +245,15 @@ fmt.Println(shuffle)
 ```
 
 
+### `Ucfirst`
+
+```go
+var converted = pehape.Ucfirst("hello world")
+fmt.Println(converted)
+//result : "Hello world"
+```
+
+
 ### `StrContains`
 
 ```go
