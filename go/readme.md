@@ -204,8 +204,29 @@ fmt.Println(symbol)
 //result : "🐘"
 ```
 
-### `StrPad`
 
+### `StrStartsWith`
+
+```go
+var result = pehape.StrStartsWith("Hello World", "Hell")
+fmt.Println(result)
+//result : true
+
+var result2 = pehape.StrStartsWith("Hello World", "World")
+fmt.Println(result2)
+//result : false
+```
+
+
+### `Strlen`
+```go
+var length = pehape.Strlen("🤗🥰")
+fmt.Println(length)
+// result: 8
+```
+
+
+### `StrPad`
 ```go
 input := "Alien";
 fmt.Println(StrPad(input, 10));                     // produces "Alien     "
@@ -216,7 +237,6 @@ fmt.Println(StrPad(input,  3, "*"));                // produces "Alien"
 ```
 
 ### `StrShuffle`
-
 ```go
 shuffle := StrShuffle("abcdef")
 
@@ -224,10 +244,34 @@ shuffle := StrShuffle("abcdef")
 fmt.Println(shuffle)
 ```
 
+
 ### `Ucfirst`
 
 ```go
 var converted = pehape.Ucfirst("hello world")
 fmt.Println(converted)
 //result : "Hello world"
+```
+
+
+### `StrContains`
+
+```go
+var isContains = pehape.StrContains("Hello World!", "World")
+fmt.Println(isContains)
+//result : true
+
+var isContains2 = pehape.StrContains("Hello World!", "world")
+fmt.Println(isContains2)
+//restult: false
+```
+
+
+### `ChunkSplit`
+
+```go
+chunk, err := ChunkSplit("hello", 2, "oke")
+
+//This will print: "<nil> heokellokeooke"
+fmt.Println(err, chunk)
 ```
