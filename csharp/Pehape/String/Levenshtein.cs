@@ -16,8 +16,8 @@ namespace Pehape {
 		public static int Levenshtein(string string1, string string2, int insertCost = 1, int replaceCost = 1, int deleteCost = 1) {
 			// Ported from https://github.com/php/php-src/blob/master/ext/standard/levenshtein.c
 
-			if (string1 is null) throw new ArgumentNullException(nameof(string1));
-			if (string2 is null) throw new ArgumentNullException(nameof(string2));
+			ArgumentNullException.ThrowIfNull(string1);
+			ArgumentNullException.ThrowIfNull(string2);
 			if (insertCost < 0) throw new ArgumentException("InsertCost cannot be negative.", nameof(insertCost));
 			if (replaceCost < 0) throw new ArgumentException("ReplaceCost cannot be negative.", nameof(replaceCost));
 			if (deleteCost < 0) throw new ArgumentException("DeleteCost cannot be negative.", nameof(deleteCost));
@@ -28,7 +28,7 @@ namespace Pehape {
 
 			Span<int> p1 = stackalloc int[string2.Length + 1];
 			Span<int> p2 = stackalloc int[string2.Length + 1];
-			bool swap = false;
+			var swap = false;
 
 			for (var i2 = 0; i2 <= string2.Length; i2++) {
 				p1[i2] = i2 * insertCost;
@@ -42,7 +42,7 @@ namespace Pehape {
 					if (c1 < c0) {
 						c0 = c1;
 					}
-					int c2 = (swap ? p1 : p2)[i2] + insertCost;
+					var c2 = (swap ? p1 : p2)[i2] + insertCost;
 					if (c2 < c0) {
 						c0 = c2;
 					}

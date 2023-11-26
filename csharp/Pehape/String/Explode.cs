@@ -16,7 +16,7 @@ namespace Pehape {
 		/// <returns>An array of strings.</returns>
 		public static string[] Explode(string? separator, string str, int? limit = null) {
 			if (separator is "") throw new ArgumentException("Separator cannot be empty.", nameof(separator));
-			if (str is null) throw new ArgumentNullException(nameof(str));
+			ArgumentNullException.ThrowIfNull(str);
 			return limit switch {
 				null => str.Split(separator),
 				> 0 => str.Split(separator).Take(limit.Value).ToArray(),
@@ -37,7 +37,7 @@ namespace Pehape {
 		/// one element is returned.</param>
 		/// <returns>An array of strings.</returns>
 		public static string[] Explode(char separator, string str, int? limit = null) {
-			if (str is null) throw new ArgumentNullException(nameof(str));
+			ArgumentNullException.ThrowIfNull(str);
 			return limit switch {
 				null => str.Split(separator),
 				> 0 => str.Split(separator).Take(limit.Value).ToArray(),
