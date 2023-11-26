@@ -14,10 +14,10 @@ namespace Pehape {
 		/// <param name="str">The input string.</param>
 		/// <returns>Returns the ROT13 version of the given string.</returns>
 		public static string StrRot13(string str) {
-			if (str is null) throw new ArgumentNullException(nameof(str));
+			ArgumentNullException.ThrowIfNull(str);
 
 			var buffer = new StringBuilder();
-			foreach (char ch in str) {
+			foreach (var ch in str) {
 				buffer.Append((char)(ch switch {
 					>= 'a' and <= 'z' => ch > 'm' ? ch - 13 : ch + 13,
 					>= 'A' and <= 'Z' => ch > 'M' ? ch - 13 : ch + 13,
