@@ -6,6 +6,7 @@
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
     <AnalysisLevel>latest-all</AnalysisLevel>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
 </Project>

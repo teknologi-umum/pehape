@@ -2,6 +2,7 @@
 using System.Linq;
 
 namespace Pehape {
+	// ReSharper disable once InconsistentNaming
 	public static partial class PHP {
 		/// <summary>
 		/// The Implode function joins array elements with a string.

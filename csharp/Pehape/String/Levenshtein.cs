@@ -1,6 +1,7 @@
 ﻿using System;
 
 namespace Pehape {
+	// ReSharper disable once InconsistentNaming
 	public static partial class PHP {
 		/// <summary>
 		/// The Levenshtein function returns the Levenshtein distance between two strings.
@@ -30,22 +31,16 @@ namespace Pehape {
 			Span<int> p2 = stackalloc int[string2.Length + 1];
 			var swap = false;
 
-			for (var i2 = 0; i2 <= string2.Length; i2++) {
-				p1[i2] = i2 * insertCost;
-			}
-			for (var i1 = 0; i1 < string1.Length; i1++) {
+			for (var i2 = 0; i2 <= string2.Length; i2++) p1[i2] = i2 * insertCost;
+			foreach (var c in string1) {
 				(swap ? p1 : p2)[0] = (swap ? p2 : p1)[0] + deleteCost;
 
 				for (var i2 = 0; i2 < string2.Length; i2++) {
-					var c0 = (swap ? p2 : p1)[i2] + (string1[i1] == string2[i2] ? 0 : replaceCost);
+					var c0 = (swap ? p2 : p1)[i2] + (c == string2[i2] ? 0 : replaceCost);
 					var c1 = (swap ? p2 : p1)[i2 + 1] + deleteCost;
-					if (c1 < c0) {
-						c0 = c1;
-					}
+					if (c1 < c0) c0 = c1;
 					var c2 = (swap ? p1 : p2)[i2] + insertCost;
-					if (c2 < c0) {
-						c0 = c2;
-					}
+					if (c2 < c0) c0 = c2;
 					(swap ? p1 : p2)[i2 + 1] = c0;
 				}
 				swap = !swap;

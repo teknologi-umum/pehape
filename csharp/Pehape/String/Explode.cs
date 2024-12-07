@@ -2,6 +2,7 @@
 using System.Linq;
 
 namespace Pehape {
+	// ReSharper disable once InconsistentNaming
 	public static partial class PHP {
 		/// <summary>
 		/// The Explode function breaks a string into an array.

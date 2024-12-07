@@ -2,6 +2,7 @@
 using System.Text;
 
 namespace Pehape {
+	// ReSharper disable once InconsistentNaming
 	public static partial class PHP {
 		/// <summary>
 		/// Performs the ROT13 encoding on the string argument and returns the resulting string.
