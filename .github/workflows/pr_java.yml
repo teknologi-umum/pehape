@@ -1,0 +1,37 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    paths: ["java/**"]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./java
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run Test
+      run: mvn test
+    - name: Report Coverage
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./java//target/site/jacoco/jacoco.xml
+        flags: java
+    - name: Build
+      run: mvn clean package
+
